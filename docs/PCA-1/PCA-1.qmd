@@ -1,0 +1,337 @@
+---
+format: 
+  revealjs:
+    theme: [style.scss, default]
+    width: "100%"
+    height: "100%"
+    minScale: 1
+    maxScale: 1
+    center: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F, error = F)
+```
+
+```{r, echo = F}
+library(ggplot2)
+library(dplyr)
+library(cowplot)
+library(extrafont)
+library(tidyverse)
+
+theme_set(
+  theme_bw() + 
+    theme(plot.background = element_rect(fill = "#eaebff", color = "#eaebff"),
+          legend.box.background = element_rect(color = "black"))
+)
+```
+
+##
+
+<div style="position:absolute;width:80%;height:500px;border: 0px double;padding: 150px 10px; left:10%; top:20px;">
+<div style="position:absolute;width:500px">
+<img src="fig/2bees_opaque.png" width="400" height="400" style="border:2px solid; border-radius:100%; padding:0px;display:block;margin-left:auto;margin-right:auto"> 
+<div style="font-size:0.25em;position:absolute;right:0px;">Illustration: Amrei Binzer-Panchal</div>
+</div>
+<div style="position:absolute;text-align:left; font-size: 1.5em;padding:50px;left:500px;width:50%;">
+<br>
+<div style="font-size:0.5em">Basic Biostatistics and Bioinformatics</div>
+
+Session 3: PCA
+
+<div style="font-size:0.5em">Swedish University of Agricultural Sciences, Alnarp</div>
+<div style="font-size:0.3em"><br>11 December 2023</div>
+</div>
+
+</div>
+
+## Basic Biostatistics and Bioinformatics
+
+A seminar series on fundamentals 
+
+Organised by *SLUBI* and *Statistics at SLU*
+
+Presentation of background and a practical exercise
+
+<br>
+Upcoming topics
+
+- 27 November. Linux Basics
+- **11 December. PCA**
+- 15 January. Introduction to Markdown
+- 29 January. Population Structure
+
+<br>
+Topic suggestions are welcome
+
+##
+
+**SLUBI**
+
+- SLU bioinformatics center
+- Weekly online drop-in (Wednesdays at 13.00)
+- slubi@slu.se, [https://www.slubi.se](https://www.slubi.se)
+- Alnarp: Lizel Potgieter (Dept. of Plant Breeding)
+
+<br>
+
+**Statistics at SLU**
+
+- SLU statistics center
+- Free consultations for all SLU staff
+- statistics@slu.se
+- Alnarp: Jan-Eric Englund and Adam Flöhr (Dept. of Biosystems and Technology)
+
+## Today's Presentation
+
+Principal Component Analysis
+
+Some background and justification
+
+Interpretation of results
+
+Implementation in R
+
+<br>
+
+**Exercise session**
+
+`PCAtools` in Bioconductor
+
+- https://bioconductor.org/packages/devel/bioc/vignettes/PCAtools/inst/doc/PCAtools.html
+
+## The nature of multivariate data
+
+Multiple measurements of the same unit
+
+$n$ units and $d$ measured variables
+
+<br>
+
+<div class="fragment fade-in">
+Examples
+
+- Phenological measures on the same plant
+- Expressions of genes on the same biological sample
+- Chemical compound measurements on the same soil sample
+
+</div>
+
+## Example data
+
+Palmer Archipelago (Antarctica) penguin data
+
+Bill, flipper, and body mass measurements for 344 individuals from 3 species
+
+```{r}
+library(palmerpenguins)
+penguins <- penguins %>% drop_na()
+
+penguins
+```
+
+$n = 333$, $d = 4$
+
+## Linear combinations and variance
+
+A *linear combination* of variables is a weighted sum
+
+Say we have a set of variables ${x_1, x_2, ..., x_d}$
+
+We can construct linear combinations
+
+$$z_1 = l_1 \cdot x_1 + l_2 \cdot x_2 + ... + l_d \cdot x_d$$
+
+Common to use some restriction on the coefficients $l$
+
+For PCA purposes the relevant restriction is that squared $l$s equals one
+
+<br>
+
+<div class="fragment fade-in">
+
+**Variance of sums**
+
+The variance of a sum is the sum of the variances plus twice the correlation between each pair
+
+</div>
+
+## Penguin example
+
+The penguin data contains columns for bill length ($x_1$) and flipper length ($x_2$)
+
+We can combine these, for example $z = \sqrt\frac{1}{5} \cdot x_1 + \sqrt\frac{4}{5} \cdot x_2$
+
+and get $$Var(z) = \frac{1}{5} Var(x_1) + \frac{4}{5} Var(x_2) + 2\sqrt\frac{1}{5} \sqrt\frac{4}{5}Cor(x_1, x_2)$$
+
+<div class="fragment fade-in">
+Variance and correlation is given by
+
+```{r}
+var(penguins[c(3,5)])
+```
+
+and the variance of the sum becomes
+
+```{r}
+var(1/sqrt(5) * penguins$bill_length_mm + sqrt(4) / sqrt(5) * penguins$flipper_length_mm)
+```
+
+</div>
+<div class="fragment fade-in">
+The linear combination has higher variance than either original variable
+</div>
+
+## Dimension reduction
+
+Original data has $d$ dimensions
+
+Want to reduce the number of dimensions but keep as much information as possible
+
+<br>
+<div class="fragment fade-in">
+**PCA**
+
+Two highly correlated variables contain (some of) the same information
+
+Merging correlated variables gives combinations which capture more of the variation
+
+We can order these linear combinations by variance explained
+
+Combinations with little variance explained can be dropped
+</div>
+
+## Principal Component Analysis (PCA)
+
+PCA forms a new set of variables (principal components) as linear combinations of the original variables
+
+The first PC contains the most of the original variance
+
+<br>
+
+<div class="fragment fade-in">
+**Results from a PCA**
+
+Three primary outputs
+
+- *Variance decomposition:* shows the proportion of variance in each component
+
+- *Scores:* Principal components for the observations
+
+- *Loadings:* weight parameters of the original variables
+</div>
+
+<br>
+
+<div class="fragment fade-in">
+PCA does not rely on any formal assumptions
+
+Works best on continuous data with somewhat even distributions
+
+Tests of components may have assumptions, such as requiring normal distribution
+</div>
+
+## PCA, penguin example
+
+We can run a PCA using `prcomp()` from base-R
+
+```{r, fig.height=3.5, fig.width=3.5,message=F, warning=F}
+mod <- prcomp(penguins[,3:6], scale. = T)
+summary(mod)
+```
+
+The principal components are ordered by importance
+
+If the later components explain little of the total variance they may be removed without a great loss
+
+Here we lose 12 percent of the total variance if we drop the two final components
+
+## Penguin examples. Loadings and scores
+
+The components are given by multipling original variables with *loadings* and summing
+
+Loadings are contained in the object as `rotation`
+
+```{r}
+mod$rotation
+```
+
+<br>
+<div class="fragment fade-in">
+A *score* can be calculated for each observation and component
+
+```{r}
+mod$x[1:5,] # Scores of the first five observations
+```
+
+</div>
+
+## PCA, biplot
+
+PCA results are often visualised in a *biplot*
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, out.height=500, fig.align='center', fig.width=7}
+library(factoextra)
+fviz_pca_biplot(mod, geom = "point", 
+                habillage = penguins$species)
+```
+:::
+
+::: {.column width="50%"}
+The biplot summarises similarity between individuals (points) and variables (arrows)
+
+>- Close points correspond to more similar individuals
+>- Loadings (arrows) with similar angles are correlated
+>- Longer loadings are more important in the corresponding component
+>- Points in the direction of a loading indicate individuals with high values in that variable
+:::
+
+::::
+
+## Alternatives and complements to PCA
+
+**Factor analysis**
+
+Factor analysis re-combines the components (by rotation)
+
+Clarifies the PCA by strengthening the connection between components and original variables
+
+<br>
+<div class="fragment fade-in">
+**nMDS (non-metric Multi-dimensional Scaling)**
+
+Replicates multivariate distances in a smaller number of dimensions
+
+Generalises the PCA by allowing the use of any type of distance measure
+</div>
+<br>
+<div class="fragment fade-in">
+**Regression-type methods**
+
+A large number of methods for situations with two or more multidimensional datasets
+
+Want to explain one multivariate response using some multivariate explanatory set
+
+Includes PLS (Partial Least Squares), RDA (Redundancy Analysis) and CCA (Canonical Correspondence Analysis)
+</div>
+##
+
+<div style="position:absolute;width:80%;height:500px;border: 0px double;padding: 150px 10px; left:10%; top:20px;">
+<div style="position:absolute;width:500px">
+<img src="fig/2bees_opaque.png" width="400" height="400" style="border:2px solid; border-radius:100%; padding:0px;display:block;margin-left:auto;margin-right:auto"> 
+<div style="font-size:0.25em;position:absolute;right:0px;">Illustration: Amrei Binzer-Panchal</div>
+</div>
+<div style="position:absolute;text-align:left; font-size: 1.5em;padding:50px;left:500px;width:50%;">
+<br>
+
+The End.
+Stick around for practical exercise
+</div>
+
+</div>
