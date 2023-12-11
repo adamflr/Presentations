@@ -2,7 +2,9 @@
 format: html
 ---
 
+
 |   |Title                                                                                   |Comments           |
 |--:|----------------------------------------------------------------------------------------|-------------------|
 |1  |[Introduction to R](/Presentations/Introduction-to-R/Introduction-to-R.html)            |Three Bees         |
 |2  |[Basics of PCA](/Presentations/PCA-1/PCA-1.html)                                        |Three Bees         |
+
