@@ -65,7 +65,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart"><span class="header-section-number">9.2</span> Bar chart</a></li>
   <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart"><span class="header-section-number">9.3</span> Pie chart</a></li>
   </ul></li>
-  <li><a href="#upcoming-material" id="toc-upcoming-material" class="nav-link" data-scroll-target="#upcoming-material"><span class="header-section-number">10</span> Upcoming material</a></li>
+  <li><a href="#pivot-tables" id="toc-pivot-tables" class="nav-link" data-scroll-target="#pivot-tables"><span class="header-section-number">10</span> Pivot tables</a></li>
+  <li><a href="#upcoming-material" id="toc-upcoming-material" class="nav-link" data-scroll-target="#upcoming-material"><span class="header-section-number">11</span> Upcoming material</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Exercise_1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -296,8 +297,41 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="upcoming-material" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Upcoming material</h1>
+<section id="pivot-tables" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Pivot tables</h1>
+<p>We earlier saw how specific functions like <code>SUM</code> and <code>MEAN</code> can be used to summarise an entire group of values into a single number (to <em>aggregate</em>). Excel has a built in tool, pivot tables, which makes this operation a bit simpler. The steps to constructing a pivot table is to start with some data, create and empty pivot table, for example using the <em>Insert</em> ribbon, and then connecting the rows and columns of the pivot table to the columns of the original data.</p>
+<ol start="23" type="1">
+<li>Go to the first sheet in the land use data. Click the <em>Insert</em> ribbon and the PivotTable button. This should open a dialog window showing the range of the data (it should automatically identify the full data as the ingoing data) and an option of where to place the pivot table. Select <em>New Worksheet</em> and click <em>Ok</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/17-Create-pivot.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Creating a pivot table.</figcaption>
+</figure>
+</div>
+<p>Done correctly, we should now have an empty pivot table in a new sheet. To the right of the window we can see a list of the variables of the original data and four fields: <em>Filters</em>, <em>Columns</em>, <em>Rows</em> and <em>Values</em>. We fill a pivot table by dragging variables from the list into one of the four fields.</p>
+<ol start="24" type="1">
+<li>Drag the variable <em>Year</em> to the field <em>Rows</em> and the variable <em>Cropland</em> to the field <em>Values</em>. Interpret the resulting pivot table.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/Vault/19-pivot-rows.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">A pivot table with rows and values.</figcaption>
+</figure>
+</div>
+<ol start="25" type="1">
+<li>The default aggregation function is the sum. To change this we can go to the <em>Values</em> field in the window to the right and click the arrow button new to the selected variable. Under <em>Value Field Settings</em> there is a number of possible aggregation functions, including the mean and the standard deviation (<em>StdDev</em>). Change it to a mean value for now.</li>
+<li>Finally a quick look at the other two field of the table. Drag the variable <em>Entity</em> to the field <em>Row</em> and observe the outcome. The drag the variable <em>Entity</em> to <em>Filters</em> and observe the outcome.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/Vault/20-pivot-rows-cols.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">A pivot table with columns, rows and values.</figcaption>
+</figure>
+</div>
+</section>
+<section id="upcoming-material" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Upcoming material</h1>
 <p>In the next computer exercise we will look at</p>
 <ul>
 <li>using pivot tables to calculate summary statistics of different variables for each of multiple groups,</li>
