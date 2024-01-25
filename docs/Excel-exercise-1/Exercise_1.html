@@ -165,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Relative and absolute references are often mixed in a single formula. Say for example that we want to multiply some number with the values in <em>ID</em>, but we want to be flexible with what that number is. We can then use some cell to hold that number and multiply each row value with that cell.</p>
 <ol start="7" type="1">
-<li>Write the value 7 in an empty cell, say <code>I2</code>. Give the name <em>F</em> to column F. Write <code>=A1*$I$2</code> in <code>F2</code> and fill down. What happens when the value in <code>I2</code> is changed?</li>
+<li>Write the value 7 in an empty cell, say <code>I2</code>. Give the name <em>F</em> to column F. Write <code>=A2*$I$2</code> in <code>F2</code> and fill down. What happens when the value in <code>I2</code> is changed?</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -177,8 +177,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="4.1" class="anchored" data-anchor-id="references-when-moving-cells"><span class="header-section-number">4.1</span> References when moving cells</h2>
 <p>As we saw when discussing the types of pointer a marked area can be used with the arrow cross by placing the cursor on the border of the marked area and clicking-and-dragging. Another alternative is to cut with <em>ctrl + X</em> and paste with <em>ctrl + V</em>. In modern Excel versions the references are fixed when moving a cell.</p>
 <ol start="8" type="1">
-<li>The cell <code>C2</code> references to <code>A2</code>. Move <code>C2</code> to some empty place and note the formula of the cell. Then move it back to <code>C2</code> again.</li>
-<li>The cell <code>A2</code> is referenced by <code>C2</code>. Move <code>A2</code> to some empty place and note the formula in <code>C2</code>. Then move the cell back to <code>A2</code>.</li>
+<li>The cell <code>C2</code> references to <code>B2</code>. Move <code>C2</code> to some empty place and note the formula of the cell. Then move it back to <code>C2</code> again.</li>
+<li>The cell <code>B2</code> is referenced by <code>C2</code>. Move <code>B2</code> to some empty place and note the formula in <code>C2</code>. Then move the cell back to <code>B2</code>.</li>
 </ol>
 </section>
 </section>
@@ -187,8 +187,8 @@ ul.task-list li input[type="checkbox"] {
 <p>A function is some operation that takes an input and produces an output. We saw an example of a function when calculating column <em>C</em>. Excel includes a large number of functions for different operations. You can see some of these by going to <em>Formula</em> in the ribbon and selecting a topic. Some key functions from a statistical point-of-view is to take a sum or a mean, possibly by some grouping.</p>
 <ol start="10" type="1">
 <li>The sum function is called <code>SUM</code> and takes a range of values as input, giving the sum of those values as output. In cell <code>I3</code>, calculate the sum of column <code>C</code>.</li>
-<li>The mean function is called <code>MEAN</code> and takes a range of values as input, giving the mean of those values as output. In cell <code>I4</code>, calculate the mean of column <code>C</code>.</li>
-<li>We almost always want to calculate sums or means for each of multiple groups. One way to do this is by <code>SUMIF</code> and <code>MEANIF</code>. Start by giving column <em>G</em> a name <em>Grouping</em> and setting the first five values to <em>a</em> and the remaining to <em>b</em>. Mark an empty cell, say <code>I5</code> and write the formula <code>=SUMIF(G2:G11,"a",F2:F11)</code>. The <code>SUMIF</code> function takes three inputs: the grouping area, the condition to check, and the sum area. We can read this as <em>in the range G2 to G11, where the value is equal to </em>a<em>, sum the values in F2 to F11</em>.</li>
+<li>The mean function is called <code>AVERAGE</code> and takes a range of values as input, giving the mean of those values as output. In cell <code>I4</code>, calculate the mean of column <code>C</code>.</li>
+<li>We almost always want to calculate sums or means for each of multiple groups. One way to do this is by <code>SUMIF</code> and <code>AVERAGEIF</code>. Start by giving column <em>G</em> a name <em>Grouping</em> and setting the first five values to <em>a</em> and the remaining to <em>b</em>. Mark an empty cell, say <code>I5</code> and write the formula <code>=SUMIF(G2:G11;"a";F2:F11)</code>. The <code>SUMIF</code> function takes three inputs: the grouping area, the condition to check, and the sum area. We can read this as <em>in the range G2 to G11, where the value is equal to </em>a<em>, sum the values in F2 to F11</em>.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -196,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption class="figure-caption">The sum function takes a range (multiple cells) as input and gives the sum of the valeus as output.</figcaption>
 </figure>
 </div>
-<p>The <code>MEANIF</code> function is one way to calculate mean values by different groups. We will later see another, more flexible, way using pivot tables.</p>
+<p>The <code>AVERAGEIF</code> function is one way to calculate mean values by different groups. We will later see another, more flexible, way using pivot tables.</p>
 </section>
 <section id="a-look-at-some-actual-data" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> A look at some actual data</h1>
