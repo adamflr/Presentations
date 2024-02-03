@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistics Exercise 2. Scientific graphs and ecological data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Exercise_2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Exercise_2_files/libs/quarto-html/quarto.js"></script>
+<script src="Exercise_2_files/libs/quarto-html/popper.min.js"></script>
+<script src="Exercise_2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Exercise_2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Exercise_2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Exercise_2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Exercise_2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Exercise_2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Exercise_2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#scientific-graphs" id="toc-scientific-graphs" class="nav-link" data-scroll-target="#scientific-graphs"><span class="header-section-number">2</span> Scientific graphs</a>
+  <ul class="collapse">
+  <li><a href="#barchart-with-errorbars" id="toc-barchart-with-errorbars" class="nav-link" data-scroll-target="#barchart-with-errorbars"><span class="header-section-number">2.1</span> Barchart with errorbars</a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">2.2</span> Boxplot</a></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">2.3</span> Histogram</a></li>
+  </ul></li>
+  <li><a href="#ecological-data" id="toc-ecological-data" class="nav-link" data-scroll-target="#ecological-data"><span class="header-section-number">3</span> Ecological data</a>
+  <ul class="collapse">
+  <li><a href="#ecological-population-data" id="toc-ecological-population-data" class="nav-link" data-scroll-target="#ecological-population-data"><span class="header-section-number">3.1</span> Ecological population data</a></li>
+  <li><a href="#diversity-indices" id="toc-diversity-indices" class="nav-link" data-scroll-target="#diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Exercise_2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Statistics Exercise 2. Scientific graphs and ecological data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In this exercise we turn toward more statistics-specific graphs and calculations. In the first part we look at three graphs which are common in scientific presentations: the bar chart with errorbars, the boxplot, and the histogram. In the second part we look at how ecological population data can be visualised as a heatmap (using cell formatting in Excel) and summarised and explained using a <em>diversity index</em>.</p>
+<p>In the first part we work some example data on global socio-economics. The source is the Gapminder foundation. In the second part we work with some scientific data on bird species at different sites.</p>
+</section>
+<section id="scientific-graphs" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Scientific graphs</h1>
+<section id="barchart-with-errorbars" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="barchart-with-errorbars"><span class="header-section-number">2.1</span> Barchart with errorbars</h2>
+<p>In the previous exercise we saw the humble barchart, where a summary measure like a mean is shown as the height of a bar for each of a few different groups. In scientific publications the barchart is almost always developed using an errorbar which shows the dispersion in the distribution measured with a standard deviation or the precision of the mean estimate measured with a standard error.</p>
+<p>The first step is to calculate mean values and standard deviations. We will do this for each year in the Gapminder data using a pivot table.</p>
+<ol type="1">
+<li>In the <em>Gapminder.xlsx</em> file, click anywhere in the data (such as <code>A1</code>). Then go to the <em>Insert</em> ribbon and select <em>PivotTable</em>. The dialog window should say that the input data is the full dataset and that the pivot table is printed in a new sheet. Click <em>OK</em> to produce an empty table.</li>
+<li>The new window should have the pivot table field to the right. Drag the variable <em>year</em> to <em>Rows</em> and <em>liveExp</em> to <em>Values</em>. The default is to calculate the sum, but this can be changed to the mean by clicking the small arrow next to <em>Sum of lifeExp</em>, selecting <em>Value Field Settings</em>, and then taking <em>Average</em> in the list of functions.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/204-average-life2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Changing the type of calculation in a pivot table.</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>In a similar way we can add the standard deviation to the table. Drag <em>lifeExp</em> from the list of variables to <em>Values</em>. Go to <em>Value Field Settings</em> and select <em>StdDev</em> for the standard deviation.</li>
+<li>It is possible to create a bar chart using a <em>PivotChart</em>, but since we need to add an errorbar we will use a trick to use a standard graph. The trick is to create a parallell non-pivot table be referencing the pivot table. Click an empty cell such as <code>G4</code> and link the first data cell in the pivot table by writing the formula <code>=A4</code>. Auto-fill that cell to the right for each column and down for each row (except for the <em>Grand Total</em>). Give this new table suitable headers (<em>Year</em>, <em>Mean</em> and <em>SD</em>).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/206-para-table2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Creating a shadow table from a pivot table.</figcaption>
+</figure>
+</div>
+<ol start="5" type="1">
+<li>Create the bar chart by marking the columns with <em>Year</em> and <em>Mean</em>, then going to the <em>Insert</em> ribbon and selecting the graph icon for a barchart.</li>
+<li>Errorbars can now be added by clicking the green plus to right right of the graph, clicking the arrow by <em>Error Bars</em> and selecting <em>More Options</em>. In the margin window which now appears select <em>Custom</em> and <em>Specify values</em> at the very bottom. In the dialog window remove the text and select the values in the column <em>SD</em>. Do the same for both <em>Positive</em> and <em>Negative</em>. Click <em>OK</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/211-barchart-error2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Adding errorbars to a barchart.</figcaption>
+</figure>
+</div>
+</section>
+<section id="boxplot" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">2.2</span> Boxplot</h2>
+<p>A boxplot visualises the distribution of data as a box with <em>whiskers</em>. The box splits the observations into four groups: the lowest quarter of values is below the box; the second lowest is in the box but under the middle bar; the second highest quarter is in the box above the bar; and the highest quarter is above the box. It is also possible to visualise extreme values as dot and to add a marker for the mean value.</p>
+<p>In modern Excel versions it is very easy to create a boxplot. Here we create a boxplot for life expectancy over time.</p>
+<ol start="7" type="1">
+<li>In the sheet with all data, mark the columns for <em>year</em> and <em>lifeExp</em>. Go to the <em>Insert</em> ribbon and find the small graph icon for <em>Statistic Chart</em> (typically in the middle row and middle column of icons). Select <em>Box and Whisker</em> to create a boxplot.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/214-boxplot-select.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Creating a boxplot from two columns of data.</figcaption>
+</figure>
+</div>
+</section>
+<section id="histogram" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="histogram"><span class="header-section-number">2.3</span> Histogram</h2>
+<p>A histogram shows the distribution of a variable by dividing the x-axis into intervals (<em>bins</em>) and letting bars show the number of observations in each interval. We illustrate this using some <em>wide</em> data in the sheet <em>Wide-lifeExp</em>.</p>
+<ol start="8" type="1">
+<li>Select the column with observations from 1967. Go to the <em>Insert</em> ribbon and find the graph icon for <em>Statistic Chart</em>. Select <em>Histogram</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/216-histogram-wide-select.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Creating a histogram.</figcaption>
+</figure>
+</div>
+<ol start="9" type="1">
+<li>The resulting histogram has automatically selected intervals on the x-axis. To change these, click anywhere in the x-axis. In the window to the right, find the icon with three bars and the section with <em>Axis options</em>. Set the bin width to a suitable value (for example 5) and set the value in <em>Underflow bin</em> to a value which is larger than the lowest value in the data.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/217-histogram-bins.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Changing the bins of a histogram.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="ecological-data" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Ecological data</h1>
+<section id="ecological-population-data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="ecological-population-data"><span class="header-section-number">3.1</span> Ecological population data</h2>
+<p>We will now look at some real-world ecological data from a study at the Southern Swedish Forest Research Center. The file <em>Bird data.xlsx</em> contains observation numbers for different bird species. Each column is a species and each row is a site. It is natural that we want to compare the distribution of species between sites, but since some sites will have larger number overall, an initial step is to transform the observations from counts to proportion by dividing by the site total.</p>
+<ol start="10" type="1">
+<li>Copy the data sheet by right-clicking the sheet name at the bottom and selecting <em>Move or Copy</em>.</li>
+<li>In the new sheet click the first data observation in <code>B5</code>. For each cell we want to take the cell value and divide it by the sum total, which here is the sum of the row. We can do this for the first cell <code>B5</code> with the formula <code>=BLAD1!B5 / SUM(BLAD1!B5:BLAD1!AD5)</code>. Note that the sheet name followed by <code>!</code> indicates a different sheet than the current one.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/219-bird-proportions.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Calculating proportions from count data.</figcaption>
+</figure>
+</div>
+<ol start="12" type="1">
+<li>If we want to autofill this cell downwards and to the right we have to be a bit careful with which cells should be absolute (i.e.&nbsp;fixed with <code>$</code>) and which should be relative. When we autofill to the right, we want the numerator cell to change, but the we want the columns to be absolute in the denominator <code>SUM()</code>. Also, when we autofill down, we want the rows to always change. The formula should therefore be <code>=BLAD1!B5 / SUM(BLAD1!B$5:BLAD1!AD$5)</code>. Autofill that formula to get proportions for each site.</li>
+</ol>
+<p>Cells in Excel can be formatted for individual fonts, color background, font color and many other aspect. Here we use this to make the data sheet into a heatmap.</p>
+<ol start="11" type="1">
+<li>Mark the data cells in <code>B5</code> to <code>AD36</code>. Go to the <em>Home</em> ribbon and find the icon for <em>Conditional Formatting</em>. Go to <em>Color Scales</em> and pick any color scheme. The result is that each cell has a color indicating the magnitude of the proportion. If one wants to change the width of columns one can drag the black line between column headers (in the grey area with letters). One can zoom out using the slider at the bottom right.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/221-bird-format.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Adding conditional formatting to cells.</figcaption>
+</figure>
+</div>
+<p>The heatmap can be really useful to get an idea of patterns in the data, for example which species are more common and if there are differences between the two groups of sites (treatment and control sites).</p>
+</section>
+<section id="diversity-indices" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</h2>
+<p>It is common to reduce the data from multiple variables (one per species) to a single variable. This can be done using <em>diversity indices</em>. There are a few different types of indices. Here we look at <em>Simpson’s index</em>, which is the sum of squared proportions.</p>
+<ol start="12" type="1">
+<li>Go to the first empty column <code>AE</code>. We want to calculate the sum of squared proportions for each site. A square is written as <code>^2</code> in Excel, for example <code>=4^2</code> for the square of four. Here we want to square the data then sum it. This can be done with <code>=SUM(B5:AD5^2)</code>, then autofilling down for each row.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/223-bird-simpson2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Calculate Simpson’s index for the first row.</figcaption>
+</figure>
+</div>
+<ol start="13" type="1">
+<li>Add a <em>Conditional Formatting</em> to the index column. Is there any indication of difference between treatment and control sites?</li>
+<li>The diversity index can be illustrated with a boxplot. In order to do this we want one column which specifies the type of site and the numerical column of index values. In the first column we have an indicator of site type, but there is a unique identifier, so it cannot be used directly in a graph. Look into using the function <code>LEFT</code> to extract the first letter of the first column. Then construct a boxplot showing each of the two site types. The easiest way to construct a boxplot is to have the numerical columns to the right of the categorical column; one quick way to do that is to copy the numerical column and paste it to the right.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/225-bird-first-letter.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Use the <code>LEFT</code> function to extract the first letter from the column with site id.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
