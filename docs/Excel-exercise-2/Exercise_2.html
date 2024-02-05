@@ -57,6 +57,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ecological-population-data" id="toc-ecological-population-data" class="nav-link" data-scroll-target="#ecological-population-data"><span class="header-section-number">3.1</span> Ecological population data</a></li>
   <li><a href="#diversity-indices" id="toc-diversity-indices" class="nav-link" data-scroll-target="#diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</a></li>
   </ul></li>
+  <li><a href="#geographical-data" id="toc-geographical-data" class="nav-link" data-scroll-target="#geographical-data"><span class="header-section-number">4</span> Geographical data</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Exercise_2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -177,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 <li>If we want to autofill this cell downwards and to the right we have to be a bit careful with which cells should be absolute (i.e.&nbsp;fixed with <code>$</code>) and which should be relative. When we autofill to the right, we want the numerator cell to change, but the we want the columns to be absolute in the denominator <code>SUM()</code>. Also, when we autofill down, we want the rows to always change. The formula should therefore be <code>=BLAD1!B5 / SUM(BLAD1!B$5:BLAD1!AD$5)</code>. Autofill that formula to get proportions for each site.</li>
 </ol>
 <p>Cells in Excel can be formatted for individual fonts, color background, font color and many other aspect. Here we use this to make the data sheet into a heatmap.</p>
-<ol start="11" type="1">
+<ol start="13" type="1">
 <li>Mark the data cells in <code>B5</code> to <code>AD36</code>. Go to the <em>Home</em> ribbon and find the icon for <em>Conditional Formatting</em>. Go to <em>Color Scales</em> and pick any color scheme. The result is that each cell has a color indicating the magnitude of the proportion. If one wants to change the width of columns one can drag the black line between column headers (in the grey area with letters). One can zoom out using the slider at the bottom right.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
@@ -191,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="diversity-indices" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</h2>
 <p>It is common to reduce the data from multiple variables (one per species) to a single variable. This can be done using <em>diversity indices</em>. There are a few different types of indices. Here we look at <em>Simpson’s index</em>, which is the sum of squared proportions.</p>
-<ol start="12" type="1">
+<ol start="14" type="1">
 <li>Go to the first empty column <code>AE</code>. We want to calculate the sum of squared proportions for each site. A square is written as <code>^2</code> in Excel, for example <code>=4^2</code> for the square of four. Here we want to square the data then sum it. This can be done with <code>=SUM(B5:AD5^2)</code>, then autofilling down for each row.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
@@ -200,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption class="figure-caption">Calculate Simpson’s index for the first row.</figcaption>
 </figure>
 </div>
-<ol start="13" type="1">
+<ol start="15" type="1">
 <li>Add a <em>Conditional Formatting</em> to the index column. Is there any indication of difference between treatment and control sites?</li>
 <li>The diversity index can be illustrated with a boxplot. In order to do this we want one column which specifies the type of site and the numerical column of index values. In the first column we have an indicator of site type, but there is a unique identifier, so it cannot be used directly in a graph. Look into using the function <code>LEFT</code> to extract the first letter of the first column. Then construct a boxplot showing each of the two site types. The easiest way to construct a boxplot is to have the numerical columns to the right of the categorical column; one quick way to do that is to copy the numerical column and paste it to the right.</li>
 </ol>
@@ -211,6 +212,16 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
+</section>
+<section id="geographical-data" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Geographical data</h1>
+<p>We finish with a quick look at geographical data and the 3D map feature in Excel. On Canvas you should find the Excel file <em>Two-butterflies.xlsx</em>. It contains a data extract from iNaturalist. It has been prepared in Excel by changing the decimals in the coordinates to commas, and by removing information about the observers.</p>
+<ol start="17" type="1">
+<li>Find and open the file. How is the data structured? What are the observational units and the variables?</li>
+<li>Go to the <em>Insert</em> ribbon and click the <em>3D Map</em> button. This should open a window with a map of the planet. Excel should automatically plot the points based on the column names <em>latitude</em> and <em>longitude</em>.</li>
+<li>Under the setting for <em>Category</em> (in the field to the right), click <em>Add field</em> and select <em>scientific_name</em>. 20. The type of graph can be changed with the button under <em>Data</em> and the size of the marker can be changed under <em>Layer options</em> at the bottom.</li>
+</ol>
+<p>An alternative is of course to do a scatterplot with latitude and longitude as x and y variables.</p>
 </section>
 
 </main>
