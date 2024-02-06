@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <ol start="5" type="1">
 <li>Create the bar chart by marking the columns with <em>Year</em> and <em>Mean</em>, then going to the <em>Insert</em> ribbon and selecting the graph icon for a barchart.</li>
-<li>Errorbars can now be added by clicking the green plus to right right of the graph, clicking the arrow by <em>Error Bars</em> and selecting <em>More Options</em>. In the margin window which now appears select <em>Custom</em> and <em>Specify values</em> at the very bottom. In the dialog window remove the text and select the values in the column <em>SD</em>. Do the same for both <em>Positive</em> and <em>Negative</em>. Click <em>OK</em>.</li>
+<li>Errorbars can now be added by clicking the green plus to the right of the graph, clicking the arrow by <em>Error Bars</em> and selecting <em>More Options</em>. In the margin window which now appears select <em>Custom</em> and <em>Specify values</em> at the very bottom. In the dialog window remove the text and select the values in the column <em>SD</em>. Do the same for both <em>Positive</em> and <em>Negative</em>. Click <em>OK</em>.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -121,6 +121,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption class="figure-caption">Adding errorbars to a barchart.</figcaption>
 </figure>
 </div>
+<p>One good final step is to test if the connection is correct by changing one of the standard deviations to something large. We should then see a change in the graph.</p>
 </section>
 <section id="boxplot" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">2.2</span> Boxplot</h2>
@@ -135,6 +136,8 @@ ul.task-list li input[type="checkbox"] {
 <figcaption class="figure-caption">Creating a boxplot from two columns of data.</figcaption>
 </figure>
 </div>
+<p>Clicking one of the boxes opens a formatting window to the right. The default in Excel is to show the mean value as a cross.</p>
+<p>Make sure you understand the construction of the boxplot and how it displays the quartiles of the data. The boxplot can give a quick idea of the distribution of the data points. For life expectancy the data is quite symmetric, but if we look at gdp per capita the boxes will be more skewed, indicating a longer right tail in those distributions.</p>
 </section>
 <section id="histogram" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="histogram"><span class="header-section-number">2.3</span> Histogram</h2>
@@ -218,10 +221,11 @@ ul.task-list li input[type="checkbox"] {
 <p>We finish with a quick look at geographical data and the 3D map feature in Excel. On Canvas you should find the Excel file <em>Two-butterflies.xlsx</em>. It contains a data extract from iNaturalist. It has been prepared in Excel by changing the decimals in the coordinates to commas, and by removing information about the observers.</p>
 <ol start="17" type="1">
 <li>Find and open the file. How is the data structured? What are the observational units and the variables?</li>
-<li>Go to the <em>Insert</em> ribbon and click the <em>3D Map</em> button. This should open a window with a map of the planet. Excel should automatically plot the points based on the column names <em>latitude</em> and <em>longitude</em>.</li>
+<li>Go to the <em>Insert</em> ribbon and click the <em>3D Map</em> button. This should open a window with a map of the planet. Excel may automatically plot the points based on the column names <em>latitude</em> and <em>longitude</em>. If this does not happen, drag latutide and longitude from the <em>Field list</em> to the <em>Location</em> field.</li>
 <li>Under the setting for <em>Category</em> (in the field to the right), click <em>Add field</em> and select <em>scientific_name</em>. 20. The type of graph can be changed with the button under <em>Data</em> and the size of the marker can be changed under <em>Layer options</em> at the bottom.</li>
 </ol>
-<p>An alternative is of course to do a scatterplot with latitude and longitude as x and y variables.</p>
+<p>An alternative is to do a scatterplot with latitude and longitude as x and y variables.</p>
+<p>Files from iNaturalist may require some tinkering before being useful. On a Swedish system the coordinates must for example be changed from having decimal point to decimal comma.</p>
 </section>
 
 </main>
