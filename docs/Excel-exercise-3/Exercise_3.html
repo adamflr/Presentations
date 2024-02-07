@@ -108,15 +108,15 @@ ul.task-list li input[type="checkbox"] {
 <p>One fundamental use of statistics in the science is to test hypotheses using a method called <em>null hypothesis significance testing</em>. One example of this is the two-sample t-test. Two hypotheses are set up: a null hypothesis which states that two groups are equal in population mean and an alternative hypothesis which states that they are not equal. Based on underlying statistical theory it is possible to calculate a p-value. The p-value is the probability of getting a more extreme difference between the two groups than the difference we are observing. If the data is completely in line with the null hypothesis the p-value is one and if the data is very far from the null hypothesis the p-value is near zero. A p-value below 0.05 gives that the null hypothesis is <em>rejected</em> and that there is a <em>significant</em> difference between the groups.</p>
 <p>At the end of the last computer exercise we calculated diversity index for each site in the bird experiment. We saw that there was some visual difference between the treatment group and the control group. Let us now do a formal test to see if this difference is significant.</p>
 <ol start="3" type="1">
-<li>Download the Excel file <em>Computer-exercise-3.xlsx</em> from the Canvas page. Find the sheet <em>diversity-index</em>, which contains the indices per site. This data is in what we would call long form with each site one row.</li>
+<li>Download the Excel file <em>Computer-exercise-3.xlsx</em> from the Canvas page. Find the sheet <em>bird-tree-experiment</em>, which contains the indices per site. This data is in what we would call long form with each site one row.</li>
 <li>For clarity, state the hypotheses in an empty area next to the data. The null hypothesis is that the two groups have the same population mean diversity, while the alternative is that there is a difference in population means.</li>
-<li>The p-value of a test can be calculated in a few different way. The most straight-forward is to use the <code>T.TEST</code> function. In an empty area below the null and alternative hypothesis, write <code>T.TEST(C2:C17;C18:C33;2;2)</code>. The function has four argument:</li>
+<li>The p-value of a test can be calculated in a few different way. The most straight-forward is to use the <code>T.TEST</code> function. In an empty area below the null and alternative hypothesis, write <code>T.TEST(F2:F17;F18:F33;2;2)</code>. The function has four argument:</li>
 </ol>
 <ul>
-<li>the first argument <code>C2:C17</code> is the data for the first group,</li>
-<li>the second argument <code>C18:C33</code> is the data for the second group,</li>
-<li>the third argument, here a <code>2</code>, states that the test should be <em>two-tailed</em> which means that we are test both for an increasing effect of the treatment and for a decreasing effect,</li>
-<li>the fourth argument, here a <code>2</code>, sets the type of tests, here we want a test for two-samples with an assumption of equal variances.</li>
+<li>the first argument <code>F2:F17</code> is the data for the first group,</li>
+<li>the second argument <code>F18:F33</code> is the data for the second group,</li>
+<li>the third argument, here a <code>2</code>, states that the test should be <em>two-tailed</em> which means that we are testing both for an increasing effect of the treatment and for a decreasing effect,</li>
+<li>the fourth argument, here a <code>2</code>, sets the type of tests. Here we want a test for two-samples with an assumption of equal variances.</li>
 </ul>
 <ol start="6" type="1">
 <li>The result of the <code>T.TEST</code> function is the p-value. Interpret the p-value. Is there a significant difference between the control and the treatment? What is the interpretation of this in terms of the actual example?</li>
