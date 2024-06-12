@@ -1,0 +1,171 @@
+---
+format: 
+  revealjs:
+    theme: [style.scss, default]
+    width: "100%"
+    height: "100%"
+    minScale: 1
+    maxScale: 1
+    center: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F, error = F)
+```
+
+```{r, echo = F}
+library(ggplot2)
+library(dplyr)
+library(cowplot)
+library(extrafont)
+library(tidyverse)
+library(magick)
+
+theme_set(
+  theme_bw() + 
+    theme(plot.background = element_rect(fill = "#eaebff", color = "#eaebff"),
+          legend.box.background = element_rect(color = "black"))
+)
+```
+
+##
+
+## Basic Biostatistics and Bioinformatics
+
+A seminar series on the fundamentals 
+
+Organised by *SLUBI* and *Statistics at SLU*
+
+Presentation of background and a practical exercise
+
+<br>
+Topics
+
+- 3 June. Git and Github
+- 17 June. Projects in R
+- 1 July. Shiny
+
+<br>
+Topic suggestions are welcome
+
+##
+
+**SLUBI**
+
+- SLU bioinformatics center
+- Weekly online drop-in (Wednesdays at 13.00)
+- slubi@slu.se, [https://www.slubi.se](https://www.slubi.se)
+- Alnarp: Lizel Potgieter (Dept. of Plant Breeding)
+
+<br>
+
+**Statistics at SLU**
+
+- SLU statistics center
+- Free consultations for all SLU staff
+- statistics@slu.se
+- Alnarp: Jan-Eric Englund and Adam Flöhr (Dept. of Biosystems and Technology)
+
+## Git and GitHub Presentation
+
+**Introduction**
+
+- **Git** is a version control system for tracking changes in source code during software development.
+- **GitHub** is a web-based platform that uses Git for version control and provides collaboration features.
+
+## What is Git?
+
+Definition and Purpose
+
+- **Git** is a distributed version control system.
+- It helps developers collaborate on projects.
+- Allows tracking changes in source code.
+
+## Key Features of Git
+
+Why Use Git?
+
+- **Branching and Merging**: Create separate branches for new features, merge them back to the main branch.
+- **Distributed Development**: Each developer has a complete local copy of the repository.
+- **Staging Area**: Review and manage changes before committing them.
+- **History and Versioning**: Keep track of every change with commit history.
+
+## Basic Git Commands
+
+Essential Commands to Get Started
+
+- `git init`: Initialize a new Git repository.
+- `git clone [url]`: Clone an existing repository.
+- `git add [file]`: Stage changes for commit.
+- `git commit -m "[message]"`: Commit changes with a message.
+- `git status`: Check the status of changes.
+- `git log`: View commit history.
+
+## What is GitHub?
+
+Overview and Features
+
+- **GitHub** is a cloud-based platform for version control and collaboration.
+- Built on top of Git.
+- Provides a web interface for repositories.
+- Facilitates collaboration with features like pull requests, issues, and wikis.
+
+## Key Features of GitHub
+
+Why Use GitHub?
+
+- **Repositories**: Store and manage project files.
+- **Pull Requests**: Propose and review changes before merging.
+- **Issues**: Track bugs and feature requests.
+- **GitHub Actions**: Automate workflows with CI/CD.
+- **Collaborative Tools**: Wikis, project boards, and discussions.
+
+## Basic GitHub Workflow
+
+How to Collaborate Using GitHub
+
+1. **Fork**: Create a personal copy of someone else's project.
+2. **Clone**: Download your fork to your local machine.
+3. **Commit**: Make changes and commit them locally.
+4. **Push**: Upload changes to your GitHub repository.
+5. **Pull Request**: Propose changes to the original repository.
+6. **Merge**: Integrate changes after review.
+
+## Using Git and GitHub Together
+
+Integrated Workflow
+
+- **Local Development**: Use Git for version control on your local machine.
+- **Remote Collaboration**: Use GitHub to share your repository and collaborate with others.
+- **Sync Changes**: Regularly push and pull changes between local and remote repositories.
+
+
+## Best Practices
+
+Tips for Effective Use
+
+- **Commit Often**: Make frequent commits with meaningful messages.
+- **Branching Strategy**: Use branches for features, fixes, and experiments.
+- **Code Reviews**: Regularly review code via pull requests.
+- **Documentation**: Maintain good documentation for your projects.
+- **Backup**: Regularly push changes to remote repositories.
+
+
+## Resources
+
+Learn More
+
+- **Official Git Documentation**: [git-scm.com/doc](https://git-scm.com/doc)
+- **GitHub Learning Lab**: [lab.github.com](https://lab.github.com)
+- **Pro Git Book**: [git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)
+- **GitHub Guides**: [guides.github.com](https://guides.github.com)
+
+## Q&A
+
+Questions and Answers
+
+- Feel free to ask any questions about Git and GitHub.
+- Let's discuss how you can implement these tools in your projects.

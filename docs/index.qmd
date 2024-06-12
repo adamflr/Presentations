@@ -7,4 +7,9 @@ format: html
 |--:|----------------------------------------------------------------------------------------|-------------------|
 |1  |[Introduction to R](/Presentations/Introduction-to-R/Introduction-to-R.html)            |Three Bees         |
 |2  |[Basics of PCA](/Presentations/PCA-1/PCA-1.html)                                        |Three Bees         |
-
+|3  |[Excel exercise 1](/Presentations/Excel-exercise-1/Exercise_1.html)                     |Course work        |
+|4  |[Excel exercise 2](/Presentations/Excel-exercise-2/Exercise_2.html)                     |Course work        |
+|5  |[Excel exercise 3](/Presentations/Excel-exercise-3/Exercise_3.html)                     |Course work        |
+|6  |[Own functions in R](/Presentations/Own-Function-in-R/Own-Functions-in-R.html)          |Three Bees         |
+|7  |[RMarkdown](/Presentations/RMarkdown/RMarkdown.html)                                    |Three Bees         |
+|8  |[Git and Github](/Presentations/Git-and-Github/Git-and-Github.html)                     |Three Bees         |

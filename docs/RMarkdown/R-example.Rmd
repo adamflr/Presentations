@@ -1,0 +1,22 @@
+---
+output:
+  pdf_document: 
+    fig_height: 2
+    fig_width: 3
+geometry: margin=1.77in
+---
+# Example of a main title
+
+Some text followed by some R code.
+
+```{r}
+a <- 2 + 2
+a
+```
+
+Followed by a graph.
+
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(mpg, hp)) + geom_point()
+```

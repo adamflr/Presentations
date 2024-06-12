@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Git-and-Github.knit</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Git-and-Github_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="Git-and-Github_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="style1.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="Git-and-Github_files/header-attrs-2.27/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="section" class="slide level2">
+<h2></h2>
+<div
+style="position:absolute;width:80%;height:500px;border: 0px double;padding: 150px 10px; left:10%; top:20px;">
+<div style="position:absolute;width:500px">
+<p><img src="fig/2bees_opaque.png" width="400" height="400" style="border:2px solid; border-radius:100%; padding:0px;display:block;margin-left:auto;margin-right:auto"/></p>
+<div style="font-size:0.25em;position:absolute;right:0px;">
+<p>Illustration: Amrei Binzer-Panchal</p>
+</div>
+</div>
+<div
+style="position:absolute;text-align:left; font-size: 1.5em;padding:50px;left:500px;width:50%;">
+<p><br></p>
+<div style="font-size:0.5em">
+<p>Basic Biostatistics and Bioinformatics</p>
+</div>
+<p>Git, Github, RStudio</p>
+<div style="font-size:0.5em">
+<p>Swedish University of Agricultural Sciences, Alnarp</p>
+</div>
+<div style="font-size:0.3em">
+<p><br>3 June 2024</p>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-biostatistics-and-bioinformatics"
+class="slide level2">
+<h2>Basic Biostatistics and Bioinformatics</h2>
+<p>A seminar series on the fundamentals</p>
+<p>Organised by <em>SLUBI</em> and <em>Statistics at SLU</em></p>
+<p>Presentation of background and a practical exercise</p>
+<p><br> Topics</p>
+<ul>
+<li>3 June. Git and Github</li>
+<li>17 June. Projects in R</li>
+<li>1 July. Shiny</li>
+</ul>
+<p><br> Topic suggestions are welcome</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><strong>SLUBI</strong></p>
+<ul>
+<li>SLU bioinformatics center</li>
+<li>Weekly online drop-in (Wednesdays at 13.00)</li>
+<li><a href="mailto:slubi@slu.se" class="email">slubi@slu.se</a>, <a
+href="https://www.slubi.se" class="uri">https://www.slubi.se</a></li>
+<li>Alnarp: Lizel Potgieter (Dept. of Plant Breeding)</li>
+</ul>
+<p><br></p>
+<p><strong>Statistics at SLU</strong></p>
+<ul>
+<li>SLU statistics center</li>
+<li>Free consultations for all SLU staff</li>
+<li><a href="mailto:statistics@slu.se"
+class="email">statistics@slu.se</a></li>
+<li>Alnarp: Jan-Eric Englund and Adam Flöhr (Dept. of Biosystems and
+Technology)</li>
+</ul>
+</section>
+<section id="todays-content" class="slide level2">
+<h2>Today’s content</h2>
+<p>Introduction to Git and Github</p>
+<p>Commands in RStudio and the terminal</p>
+<p>Installation and setup</p>
+</section>
+<section id="in-a-nutshell" class="slide level2">
+<h2>In a nutshell</h2>
+<p><strong>Git</strong></p>
+<p><em>A distributed version control system</em></p>
+<ul>
+<li>Version control
+<ul>
+<li>Log changes during our ongoing work</li>
+<li>Create snapshots of the full project</li>
+</ul></li>
+<li>Distributed
+<ul>
+<li>Split a project into parallel versions (<em>branches</em>), each
+containing the complete project</li>
+<li>Work on smaller individual problems and merge versions into the main
+<em>branch</em> <br></li>
+</ul></li>
+</ul>
+<p><strong>Github</strong></p>
+<p><em>A cloud-based platform for version control and
+collaboration</em></p>
+<ul>
+<li>Cloud-based
+<ul>
+<li>Files are stored online and often made publicly available</li>
+</ul></li>
+<li>Collaboration
+<ul>
+<li>Projects can be split over several workers</li>
+</ul></li>
+</ul>
+</section>
+<section id="some-historical-background" class="slide level2">
+<h2>Some historical background</h2>
+<p>Both Git and Github were developed as technical software development
+tools</p>
+<p><br></p>
+<p>Git was created in the 2000s as part of Linux development</p>
+<p>Github was started in 2007 and is owned by Microsoft since 2018</p>
+<p><br></p>
+<p>The official help information can often be quite obtuse
+(<em>imo</em>)</p>
+<p>But since Git is used in many less technical fields there are lots of
+resources available</p>
+</section>
+<section id="terminology" class="slide level2">
+<h2>Terminology</h2>
+<ul>
+<li><p><em>Staging.</em> Marking a file for the next commit</p></li>
+<li><p><em>Commit.</em> Creating a time-stamp of the current
+version</p></li>
+<li><p><em>Branch.</em> A version of the project</p></li>
+<li><p><em>Clone.</em> Creating a local version of a project</p></li>
+<li><p><em>Fork.</em> Creating a personal version of a Github
+project</p></li>
+<li><p><em>Pull.</em> Moving the current online (Github) version to the
+local branch</p></li>
+<li><p><em>Push.</em> Moving the current local version to the online
+(Github) version</p></li>
+</ul>
+</section>
+<section id="working-in-git" class="slide level2">
+<h2>Working in Git</h2>
+<p>We can work in Git using several interfaces</p>
+<p><strong>The command line (or Terminal)</strong></p>
+<p>Write <em>Git commands</em> directly in the terminal</p>
+<p><strong>RStudio</strong></p>
+<p>A git-connected project will have a specific <em>Git</em> tab</p>
+<p>Point-and-click-interface to stage, commit, push</p>
+<p>There are also R packages to run Git commands</p>
+<p><strong>Specific Git interfaces</strong></p>
+<p>Git GUI - included in the Git for Windows installation</p>
+<p>Github Desktop</p>
+<p>VS Code</p>
+<p>GitKraken - (<a
+href="https://www.gitkraken.com/">gitkraken.com/</a>)</p>
+</section>
+<section id="basic-git-work.-local" class="slide level2">
+<h2>Basic Git work. Local</h2>
+<p><strong>Initializing</strong></p>
+<p>Linking a folder to Git</p>
+<p>Can be automatically selected when starting an R project</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git init</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Initialized empty Git repository <span class="cf">in</span> C<span class="sc">:</span><span class="er">/</span>Project folder<span class="sc">/</span>.git<span class="sc">/</span></span></code></pre></div>
+<div class="fragment fade-in">
+<p><strong>Status</strong></p>
+<p>See the current status</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git status</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>On branch main</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>No commits yet</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>Untracked files<span class="sc">:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  (use <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="cf">in</span> what will be committed)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        Test<span class="sc">-</span>file.txt</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>nothing added to commit but untracked files <span class="fu">present</span> (use <span class="st">&quot;git add&quot;</span> to track)</span></code></pre></div>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p><strong>Staging</strong></p>
+<p>Setting files where changes should be tracked</p>
+<p>Marking in the Git tab in RStudio</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git add .</span></code></pre></div>
+<div class="fragment fade-in">
+<p><strong>Committing</strong></p>
+<p>Creating a time-stamped version (a <em>commit</em>)</p>
+<p>Using the Commit button in RStudio</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git commit <span class="sc">-</span>m <span class="st">&quot;Add test-file&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="fu">main</span> (root<span class="sc">-</span>commit) <span class="dv">474</span>a28e] Add test<span class="sc">-</span>file</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> file changed, <span class="dv">1</span> <span class="fu">insertion</span>(<span class="sc">+</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> create mode <span class="dv">100644</span> Test<span class="sc">-</span>file.txt</span></code></pre></div>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p><strong>View history</strong></p>
+<p>History button in the Git tab in RStudio</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git log</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>commit <span class="dv">474</span><span class="fu">a28e46ef88ac01b1cfa3c1f15ead33267c7da</span> (HEAD <span class="ot">-&gt;</span> main)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Author<span class="sc">:</span> adamflr <span class="sc">&lt;</span>flr.adam<span class="sc">@</span>gmail.com<span class="sc">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Date<span class="sc">:</span>   Sat Jun <span class="dv">1</span> <span class="dv">15</span><span class="sc">:</span><span class="dv">24</span><span class="sc">:</span><span class="dv">44</span> <span class="dv">2024</span> <span class="sc">+</span><span class="dv">0200</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    Add test<span class="sc">-</span>file</span></code></pre></div>
+</section>
+<section id="branches" class="slide level2">
+<h2>Branches</h2>
+<p><strong>Create a new branch</strong></p>
+<p><em>New branch</em> button in Git tab in RStudio</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git checkout <span class="sc">-</span>b new<span class="sc">-</span>branch</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Switched to a new branch <span class="st">&#39;new-branch&#39;</span></span></code></pre></div>
+<div class="fragment fade-in">
+<p>Branch can be changed in the Git tab (drop menu to the right) or with
+<code>checkout</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git checkout main</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git checkout new<span class="sc">-</span>branch</span></code></pre></div>
+<p>Changes can be staged and committed to the new branch as usual</p>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p><strong>Merging branches</strong></p>
+<p>Changes in a branch can be merged into another by going to the target
+branch and using merge</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git checkout main</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Switched to branch <span class="st">&#39;main&#39;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git merge new<span class="sc">-</span>branch</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Updating <span class="dv">474</span>a28e..<span class="dv">463</span>c8ae</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Fast<span class="sc">-</span>forward</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> File <span class="cf">in</span> a new branch.txt <span class="sc">|</span> <span class="dv">1</span> <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> file changed, <span class="dv">1</span> <span class="fu">insertion</span>(<span class="sc">+</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a> create mode <span class="dv">100644</span> File <span class="cf">in</span> a new branch.txt</span></code></pre></div>
+</section>
+<section id="basic-git-work.-global" class="slide level2">
+<h2>Basic Git work. Global</h2>
+<p>If a local Git project is linked to an online Git repository one can
+pull (get the current online version) and push (change the online
+version to the current local version)</p>
+<p><strong>Pull</strong></p>
+<p>Pull button in the Git tab in RStudio</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git pull</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Already up to date.</span></code></pre></div>
+<div class="fragment fade-in">
+<p><strong>Push</strong></p>
+<p>Push button in the Git tab in RStudio</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git push</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Enumerating objects<span class="sc">:</span> <span class="dv">1</span>, done.</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Counting objects<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">1</span><span class="sc">/</span><span class="dv">1</span>), done.</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Delta compression using up to <span class="dv">4</span> threads</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Compressing objects<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">1</span><span class="sc">/</span><span class="dv">1</span>), done.</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Writing objects<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">1</span><span class="sc">/</span><span class="dv">1</span>), <span class="dv">712</span> bytes <span class="sc">|</span> <span class="fl">142.00</span> KiB<span class="sc">/</span>s, done.</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>Total <span class="dv">1</span> (delta <span class="dv">1</span>), reused <span class="dv">0</span> (delta <span class="dv">0</span>), pack<span class="sc">-</span>reused <span class="dv">0</span> (from <span class="dv">0</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>remote<span class="sc">:</span> Resolving deltas<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">1</span><span class="sc">/</span><span class="dv">1</span>), completed with <span class="dv">1</span> local objects.</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>To github.com<span class="sc">:</span>adamflr<span class="sc">/</span>Project<span class="sc">-</span>name.git</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>   <span class="dv">0191</span>d8b..<span class="dv">59</span>d6e9f  main <span class="ot">-&gt;</span> main</span></code></pre></div>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<p><strong>Cloning</strong></p>
+<p>Copies an entire Github repository to a local folder</p>
+<p><em>File &gt; New Project &gt; Version Control &gt; Git</em> in
+RStudio</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> git clone git<span class="sc">@</span>github.com<span class="sc">:</span>adamflr<span class="sc">/</span>Presentations.git</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Cloning into <span class="st">&#39;Presentations&#39;</span>...</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>remote<span class="sc">:</span> Enumerating objects<span class="sc">:</span> <span class="dv">384</span>, done.</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>remote<span class="sc">:</span> Counting objects<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">384</span><span class="sc">/</span><span class="dv">384</span>), done.</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>remote<span class="sc">:</span> Compressing objects<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">334</span><span class="sc">/</span><span class="dv">334</span>), done.</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>remote<span class="sc">:</span> Total <span class="dv">384</span> (delta <span class="dv">65</span>), reused <span class="dv">356</span> (delta <span class="dv">38</span>), pack<span class="sc">-</span>reused <span class="dv">0</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>Receiving objects<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">384</span><span class="sc">/</span><span class="dv">384</span>), <span class="fl">21.00</span> MiB <span class="sc">|</span> <span class="fl">2.89</span> MiB<span class="sc">/</span>s, done.</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>Resolving deltas<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">65</span><span class="sc">/</span><span class="dv">65</span>), done.</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>Updating files<span class="sc">:</span> <span class="dv">100</span>% (<span class="dv">543</span><span class="sc">/</span><span class="dv">543</span>), done.</span></code></pre></div>
+</section>
+<section id="installation-and-startup" class="slide level2">
+<h2>Installation and startup</h2>
+<ol type="1">
+<li>Installing R</li>
+<li>Installing RStudio</li>
+<li>Installing Git <a href="https://git-scm.com">git-scm.com</a></li>
+<li>Checking so that Git is reachable from RStudio</li>
+<li>Registering a Github account</li>
+<li>Linking the local machine to Github using an SSH key</li>
+<li>Starting a new Github repository</li>
+<li>Starting an RStudio project linked to that repository</li>
+</ol>
+<p>These instructions follow the steps on a Windows system</p>
+</section>
+<section id="installing-git" class="slide level2">
+<h2>3. Installing Git</h2>
+<ol type="1">
+<li>Go to <a href="https://git-scm.com">git-scm.com</a></li>
+<li>Identify the download page</li>
+<li>Choose according to operating system and download the installer</li>
+<li>Run the installer. Pick the default options</li>
+<li>Open <em>Git Bash</em> on the Start menu and run
+<code>git --version</code></li>
+</ol>
+<p>If successful the result should be the version number of the Git
+installation</p>
+</section>
+<section id="checking-the-git-rstudio-connection" class="slide level2">
+<h2>4. Checking the Git-RStudio connection</h2>
+<ol type="1">
+<li>Open RStudio and go to <em>Tools &gt; Global Options…</em></li>
+<li>Find the <em>Git/SVN</em> settings and check so that there is a path
+under <em>Git executable</em></li>
+<li>Go to <em>File &gt; New project…</em>, select <em>New
+directory</em>, then <em>New project</em>, pick a name and a folder on
+the local drive. Check the <em>Create a Git repository</em> button and
+click <em>Create project</em></li>
+<li>In the new project, look for the <em>Git</em> tab, likely in the
+same window as <em>History</em> and <em>Environment</em></li>
+</ol>
+<p>At this point one can do staging, branching and commits</p>
+<ol start="5" type="1">
+<li>Create a new file and save it in the project. It will show up in the
+Git tab</li>
+<li>Check the box under <em>Staged</em> and click <em>Commit</em></li>
+<li>Write an comment in the comment box and click <em>Commit</em></li>
+<li>Check <em>History</em> the see the commit</li>
+</ol>
+</section>
+<section id="register-a-github-account" class="slide level2">
+<h2>5. Register a Github account</h2>
+<p>Go to github.com and sign up</p>
+</section>
+<section id="link-the-local-machine-to-github" class="slide level2">
+<h2>6. Link the local machine to Github</h2>
+<p>Two types of protocols possible: SSH and HTTPS</p>
+<p>This suggestion is for SSH, since I find it a bit easier in
+RStudio</p>
+<ol type="1">
+<li>Go back to RStudio and go to <em>Tools &gt; Global
+Options…</em></li>
+<li>Under Git/SVN click <em>Create SSH key</em> and then <em>Create</em>
+and <em>OK</em></li>
+<li>Click <em>View public key</em> and copy the text</li>
+<li>Go to Github. Click the icon on the top right and go to
+<em>Settings</em></li>
+<li>Find <em>SSH and GPG keys</em> in the list to the left</li>
+<li>Click <em>New SSH key</em>. Give a suitable title (like
+<em>work-2024</em>) and paste the SSH key from RStudio in the area for
+<em>Key</em></li>
+</ol>
+</section>
+<section id="start-a-repository-and-an-rstudio-project"
+class="slide level2">
+<h2>7 &amp; 8. Start a repository and an RStudio project</h2>
+<p>Finally a Github repository needs to be linked to an RStudio
+project</p>
+<p>The easiest way is to create an empty repository and start a new
+project</p>
+<ol type="1">
+<li>Go to the Github start page</li>
+<li>Start a new repository (button on top left) and give it some name
+(like <em>test-project</em>). Click <em>Create repository</em></li>
+<li>Copy the SSH link from the next page</li>
+<li>Go to RStudio and <em>File &gt; New Project…</em></li>
+<li>Select <em>Version control</em> and <em>Git.</em> Paste the SSH link
+under <em>Repository URL</em>. Place the new project somewhere on the
+local drive (usually C:)</li>
+<li>A project window will open. Find the Git tab. Stage the files and
+commit. The click <em>Push</em>. Write <em>yes</em> if there is a
+question prompt.</li>
+<li>Update the Github page of the repository and check if the pushed
+files appear</li>
+</ol>
+</section>
+<section id="best-practices" class="slide level2">
+<h2>Best Practices</h2>
+<p>Tips for Effective Use</p>
+<ul>
+<li><strong>Commit Often</strong>: Make frequent commits with meaningful
+messages.</li>
+<li><strong>Branching Strategy</strong>: Use branches for features,
+fixes, and experiments.</li>
+<li><strong>Code Reviews</strong>: Regularly review code via pull
+requests.</li>
+<li><strong>Documentation</strong>: Maintain good documentation for your
+projects.</li>
+<li><strong>Backup</strong>: Regularly push changes to remote
+repositories.</li>
+</ul>
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<ul>
+<li><strong>Official Git Documentation</strong>: <a
+href="https://git-scm.com/doc">git-scm.com/doc</a></li>
+<li><strong>Happy Git and GitHub for the useR </strong> by Jennifer
+Bryan: <a href="https://happygitwithr.com/">happygitwithr.com/</a></li>
+<li><strong>Git in Practice</strong> by Mike McQuaid</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="Git-and-Github_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="Git-and-Github_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: false,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '100%',
+        height: '100%',
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 1,
+        maxScale: 1,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'Git-and-Github_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS_SVG";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
