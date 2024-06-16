@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Project-Organisation.knit</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Project-Organisation_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="Project-Organisation_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="style1.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="Project-Organisation_files/header-attrs-2.27/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="section" class="slide level2">
+<h2></h2>
+<div
+style="position:absolute;width:80%;height:500px;border: 0px double;padding: 150px 10px; left:10%; top:20px;">
+<div style="position:absolute;width:500px">
+<p><img src="fig/2bees_opaque.png" width="400" height="400" style="border:2px solid; border-radius:100%; padding:0px;display:block;margin-left:auto;margin-right:auto"/></p>
+<div style="font-size:0.25em;position:absolute;right:0px;">
+<p>Illustration: Amrei Binzer-Panchal</p>
+</div>
+</div>
+<div
+style="position:absolute;text-align:left; font-size: 1.5em;padding:50px;left:500px;width:50%;">
+<p><br></p>
+<div style="font-size:0.5em">
+<p>Basic Biostatistics and Bioinformatics</p>
+</div>
+<p>Project organisation in R and RStudio</p>
+<div style="font-size:0.5em">
+<p>Swedish University of Agricultural Sciences, Alnarp</p>
+</div>
+<div style="font-size:0.3em">
+<p><br>17 June 2024</p>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-biostatistics-and-bioinformatics"
+class="slide level2">
+<h2>Basic Biostatistics and Bioinformatics</h2>
+<p>A seminar series on the fundamentals</p>
+<p>Organised by <em>SLUBI</em> and <em>Statistics at SLU</em></p>
+<p>Presentation of background and a practical exercise</p>
+<p><br> Topics</p>
+<ul>
+<li>17 June. Projects in R</li>
+<li>1 July. Shiny</li>
+</ul>
+<p><br> Topic suggestions are welcome</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><strong>SLUBI</strong></p>
+<ul>
+<li>SLU bioinformatics center</li>
+<li>Weekly online drop-in (Wednesdays at 13.00)</li>
+<li><a href="mailto:slubi@slu.se" class="email">slubi@slu.se</a>, <a
+href="https://www.slubi.se" class="uri">https://www.slubi.se</a></li>
+<li>Alnarp: Lizel Potgieter (Dept. of Plant Breeding)</li>
+</ul>
+<p><br></p>
+<p><strong>Statistics at SLU</strong></p>
+<ul>
+<li>SLU statistics center</li>
+<li>Free consultations for all SLU staff</li>
+<li><a href="mailto:statistics@slu.se"
+class="email">statistics@slu.se</a></li>
+<li>Alnarp: Jan-Eric Englund and Adam Flöhr (Dept. of Biosystems and
+Technology)</li>
+</ul>
+</section>
+<section id="todays-content" class="slide level2">
+<h2>Today’s content</h2>
+<p>Projects in RStudio</p>
+<p>Organisation of folders, scripts, output files</p>
+<p>Code style</p>
+<p>Some specific packages</p>
+</section>
+<section id="projects-in-rstudio" class="slide level2">
+<h2>Projects in RStudio</h2>
+<p>Created in <em>File &gt; New Project… &gt; New directory</em></p>
+<p>Links a basic folder to RStudio</p>
+<p>Sets the folder as the working directory</p>
+<ul>
+<li>No need for <code>setwd("C:/folder/folder/folder")</code></li>
+</ul>
+<p>Easy to switch between projects</p>
+<p>Easy to share with others</p>
+</section>
+<section id="project-options" class="slide level2">
+<h2>Project options</h2>
+<p><em>Tools &gt; Project Options…</em></p>
+<p>I recommend to not restore RData at startup</p>
+<p>New session will start with an empty environment</p>
+<p>Easier to keep track of what objects are currently stored</p>
+</section>
+<section id="organisation-of-folders" class="slide level2">
+<h2>Organisation of folders</h2>
+<p>Organise files in sub-folders</p>
+<p>Suggested folders (<a
+href="https://www.stat.ubc.ca/~jenny/STAT545A/block19_codeFormattingOrganization.html">source</a>)
+could be</p>
+<ul>
+<li><code>raw-data</code></li>
+<li><code>data</code></li>
+<li><code>code</code></li>
+<li><code>figs</code></li>
+<li><code>results</code></li>
+<li><code>prose</code></li>
+</ul>
+</section>
+<section id="raw-and-processed-data" class="slide level2">
+<h2>Raw and processed data</h2>
+<p><code>raw-data</code></p>
+<ul>
+<li>Files created by others</li>
+<li>Requiring a process-step to be easier to use</li>
+</ul>
+<p><br></p>
+<p><code>data</code></p>
+<ul>
+<li><em>Tidier</em> format</li>
+<li>General format if possible (<code>.csv</code>)</li>
+</ul>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p><strong>Raw data</strong></p>
+<p><img data-src="fig/raw-data.png" /></p>
+<p><strong>Cleaner data</strong></p>
+<p><img data-src="fig/cleaner-data.png" /></p>
+</section>
+<section id="scripts" class="slide level2">
+<h2>Scripts</h2>
+<p>The code is collected in scripts</p>
+<p>Multiple shorter scripts is usually clearer than few long ones</p>
+<p><br></p>
+<p>Divide scripts by purpose</p>
+<ul>
+<li><code>process-raw-data.R</code></li>
+<li><code>import.R</code></li>
+<li><code>exploratory-graphs.R</code></li>
+<li><code>formal-tests-and-models.R</code></li>
+<li><code>presentable-graphs.R</code></li>
+</ul>
+</section>
+<section id="storing-output" class="slide level2">
+<h2>Storing output</h2>
+<p>Given data and scripts, it should always be possible to reproduce any
+results</p>
+<p>Still useful to export objects</p>
+<ul>
+<li>If certain results are sent to others</li>
+<li>If certain calculations are time consuming</li>
+</ul>
+<p>R objects can be saved as <code>.RDS</code> files (or
+<code>.RData</code> files)</p>
+</section>
+<section id="code-style" class="slide level2">
+<h2>Code style</h2>
+<p>Spaces after commas and around <code>=</code></p>
+<p>Clear names with words split by underscore <code>_</code></p>
+<p><br></p>
+<p><a href="https://style.tidyverse.org/">The tidyverse style
+guide</a></p>
+<p>The <a href="https://styler.r-lib.org/">styler</a> package can be to
+enforce the style guide</p>
+</section>
+<section id="script-sections" class="slide level2">
+<h2>Script sections</h2>
+<p>Include a header explaining the goal of the script</p>
+<p>Possibly also ongoing changes and dates</p>
+<p>Load packages at the top</p>
+<p><br></p>
+<p>Split into sections with headers for each section</p>
+<p>Section splits can be be created with <code>####</code> or
+<code>----</code></p>
+<p>Comment so that others can understand</p>
+<p>RMarkdown allows for further mixing text and code</p>
+</section>
+<section id="packages-for-reproducibility-and-organisation"
+class="slide level2">
+<h2>Packages for reproducibility and organisation</h2>
+<p>renv</p>
+<ul>
+<li>Problem: updates to R or packages can break the code</li>
+<li>renv keeps track of installed packages</li>
+<li>A project is run with a specific set of installed packages</li>
+</ul>
+<p><br></p>
+<p>targets</p>
+<ul>
+<li>Problem: changes to one part of a project can affect another
+part</li>
+<li>targets keeps track of the sections of a project</li>
+<li>Notes how changes in one part might change another part</li>
+</ul>
+</section>
+<section id="renv" class="slide level2">
+<h2>renv</h2>
+<p>Any R session is connected to a <em>library</em> - a folder where
+packages are installed</p>
+<p>The path can be shown with <code>.libPaths()</code></p>
+<p>Packages are loaded by looking in the library
+<code>library(package)</code></p>
+<p><br></p>
+<p>We mostly work with the general library</p>
+<p>New packages or updates are used by all projects</p>
+<p><br></p>
+<p>The renv package creates a project-specific library</p>
+</section>
+<section id="renv-use" class="slide level2">
+<h2>renv use</h2>
+<p><strong>Initialisation</strong></p>
+<p>Select <em>Use renv</em> when creating a new project</p>
+<p>Or run <code>library(renv)</code> and <code>init()</code> in a
+current project</p>
+<p><br></p>
+<p><strong>Install packages</strong></p>
+<p>Packages can be installed in the standard way
+<code>install.packages(name)</code></p>
+<p>Saved in the renv folder in the project</p>
+<p><br></p>
+</section>
+<section id="storing-and-restoring" class="slide level2">
+<h2>Storing and restoring</h2>
+<p><strong>Creating a snapshot</strong></p>
+<p>After installation running <code>snapshot()</code> <em>saves</em> the
+current library</p>
+<p>Listed in the <code>renv.lock</code> file</p>
+<p><br></p>
+<p><strong>Restoring a snapshot</strong></p>
+<p>The library can be restored with <code>restore()</code></p>
+<p>Another user (or future you) can recreate the exact same
+environment</p>
+</section>
+<section id="targets" class="slide level2">
+<h2>targets</h2>
+<p>A data analysis consists of some ingoing information (data) and a
+series of analysis steps</p>
+<p>Some common steps</p>
+<ul>
+<li>import data</li>
+<li>create exploratory graphs</li>
+<li>estimate models and perform tests</li>
+<li>create presentable graphs</li>
+</ul>
+<p>A step will depend on other steps</p>
+<ul>
+<li>graphs and models depend on import</li>
+<li>statistical graphs depend on model estimation</li>
+</ul>
+<p>If an earlier step changes, later steps must be re-run</p>
+<p>The <a href="https://books.ropensci.org/targets/">targets</a> package
+keeps track of step dependencies</p>
+<p>Prevents missed changes as well as unnecessary steps</p>
+</section>
+<section id="targets-use" class="slide level2">
+<h2>targets use</h2>
+<p>The basic use is to wrap analysis steps in functions</p>
+<p>Example from package website</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>generate_data <span class="ot">&lt;-</span> <span class="cf">function</span>(seed) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(file, <span class="at">col_types =</span> <span class="fu">cols</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Ozone))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(Ozone <span class="sc">~</span> Temp, data) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coefficients</span>()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plot_model <span class="ot">&lt;-</span> <span class="cf">function</span>(model, data) {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Temp, <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> model[<span class="dv">1</span>], <span class="at">slope =</span> model[<span class="dv">2</span>])</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="target-script" class="slide level2">
+<h2>Target script</h2>
+<p>The relation between these functions is specified in a target script
+<code>_target.r</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;R/functions.R&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_option_set</span>(<span class="at">packages =</span> <span class="fu">c</span>(<span class="st">&quot;readr&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(file, <span class="st">&quot;data.csv&quot;</span>, <span class="at">format =</span> <span class="st">&quot;file&quot;</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(data, <span class="fu">get_data</span>(file)),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(model, <span class="fu">fit_model</span>(data)),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(plot, <span class="fu">plot_model</span>(model, data))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<ol type="1">
+<li>Creates the <code>file</code> - a name of an object</li>
+<li>Get data using <code>get_data()</code>. The input is file and the
+output is data</li>
+<li>Apply <code>fit_model()</code>. The input is data and the output is
+model</li>
+<li>Apply `plot_model(). The input is model and data, and the output is
+plot</li>
+</ol>
+</section>
+<section id="running-sections" class="slide level2">
+<h2>Running sections</h2>
+<p>This <em>pipeline</em> can be run with <code>tar_make()</code></p>
+<p>The first time this will run all steps</p>
+<p><code>tar_visnetwork()</code> shows a graph of the steps</p>
+<p><br></p>
+<p>If there are any changes the effects can be seen in
+<code>tar_visnetwork()</code> or <code>tar_outdated()</code></p>
+<p><code>tar_make()</code> will re-run the pipeline, but only the
+relevant steps</p>
+</section>
+<section id="the-end" class="slide level2">
+<h2>The End</h2>
+<p><br><br></p>
+<p>Next session July 1</p>
+<ul>
+<li>Shiny. The R system to create apps and interactive webpages</li>
+</ul>
+<p><br></p>
+</section>
+    </div>
+  </div>
+
+  <script src="Project-Organisation_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="Project-Organisation_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: false,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '100%',
+        height: '100%',
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 1,
+        maxScale: 1,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'Project-Organisation_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS_SVG";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
