@@ -329,30 +329,29 @@ The basic use is to wrap analysis steps in functions
 Example from package website
 
 ```{r, eval=FALSE}
-generate_data <- function(seed) {
-  read_csv(file, col_types = cols()) %>%
-    filter(!is.na(Ozone))
+get_data <- function(file) {
+  read_csv(file)
 }
 
 fit_model <- function(data) {
-  lm(Ozone ~ Temp, data) %>%
+  lm(y ~ x, data) %>%
     coefficients()
 }
 
 plot_model <- function(model, data) {
   ggplot(data) +
-    geom_point(aes(x = Temp, y = Ozone)) +
+    geom_point(aes(x = x, y = y)) +
     geom_abline(intercept = model[1], slope = model[2])
 }
 ```
 
 ## Target script
 
-The relation between these functions is specified in a target script `_target.r`
+The relation between these functions is specified in a target script `_targets.r`
 
 ```{r, eval=FALSE}
 library(targets)
-source("R/functions.R")
+source("functions.R")
 tar_option_set(packages = c("readr", "dplyr", "ggplot2"))
 list(
   tar_target(file, "data.csv", format = "file"),
