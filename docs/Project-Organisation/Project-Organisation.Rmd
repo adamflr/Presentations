@@ -364,7 +364,7 @@ list(
 1. Creates the `file` - a name of an object
 2. Get data using `get_data()`. The input is file and the output is data
 3. Apply `fit_model()`. The input is data and the output is model
-4. Apply `plot_model(). The input is model and data, and the output is plot
+4. Apply `plot_model()`. The input is model and data, and the output is plot
 
 ## Running sections
 
