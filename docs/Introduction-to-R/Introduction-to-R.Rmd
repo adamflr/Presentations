@@ -1,12 +1,19 @@
 ---
-format: 
-  revealjs:
-    theme: [style.scss, default]
-    width: "100%"
-    height: "100%"
-    minScale: 1
-    maxScale: 1
-    center: false
+output: 
+  revealjs::revealjs_presentation:
+    css: style1.css
+    self_contained: false
+    reveal_plugins: ["zoom"]
+    transition: fade
+    mathjax: "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS_SVG"
+    reveal_options:
+      width: "100%"
+      height: "100%"
+      minScale: 1
+      maxScale: 1
+      slideNumber: false
+      controls: false
+      progress: false
 editor_options: 
   chunk_output_type: console
 ---
@@ -40,7 +47,7 @@ theme_set(
 <br>
 <div style="font-size:0.5em">Basic Biostatistics and Bioinformatics</div>
 
-Session 1: Introduction to R
+Session 17: Introduction to R
 
 <div style="font-size:0.5em">Swedish University of Agricultural Sciences, Alnarp</div>
 <div style="font-size:0.3em"><br>21 October 2024</div>
