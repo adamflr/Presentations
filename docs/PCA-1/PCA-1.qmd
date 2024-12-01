@@ -40,10 +40,10 @@ theme_set(
 <br>
 <div style="font-size:0.5em">Basic Biostatistics and Bioinformatics</div>
 
-Session 3: PCA
+Session 18: PCA
 
 <div style="font-size:0.5em">Swedish University of Agricultural Sciences, Alnarp</div>
-<div style="font-size:0.3em"><br>11 December 2023</div>
+<div style="font-size:0.3em"><br>2 December 2024</div>
 </div>
 
 </div>
@@ -59,10 +59,10 @@ Presentation of background and a practical exercise
 <br>
 Upcoming topics
 
-- 27 November. Linux Basics
-- **11 December. PCA**
-- 15 January. Introduction to Markdown
-- 29 January. Population Structure
+- 2 December. PCA
+- 16 December. Working with containers
+- January. Control your environment with Conda/Pixi
+- January. Introduction to Python
 
 <br>
 Topic suggestions are welcome
