@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -57,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ecological-population-data" id="toc-ecological-population-data" class="nav-link" data-scroll-target="#ecological-population-data"><span class="header-section-number">3.1</span> Ecological population data</a></li>
   <li><a href="#diversity-indices" id="toc-diversity-indices" class="nav-link" data-scroll-target="#diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</a></li>
   </ul></li>
-  <li><a href="#geographical-data" id="toc-geographical-data" class="nav-link" data-scroll-target="#geographical-data"><span class="header-section-number">4</span> Geographical data</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4</span> Summary</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Exercise_2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -78,7 +78,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
@@ -98,17 +100,17 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/204-average-life2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Changing the type of calculation in a pivot table.</figcaption>
+<figcaption>Changing the type of calculation in a pivot table.</figcaption>
 </figure>
 </div>
 <ol start="3" type="1">
 <li>In a similar way we can add the standard deviation to the table. Drag <em>lifeExp</em> from the list of variables to <em>Values</em>. Go to <em>Value Field Settings</em> and select <em>StdDev</em> for the standard deviation.</li>
-<li>It is possible to create a bar chart using a <em>PivotChart</em>, but since we need to add an errorbar we will use a trick to use a standard graph. The trick is to create a parallell non-pivot table be referencing the pivot table. Click an empty cell such as <code>G4</code> and link the first data cell in the pivot table by writing the formula <code>=A4</code>. Auto-fill that cell to the right for each column and down for each row (except for the <em>Grand Total</em>). Give this new table suitable headers (<em>Year</em>, <em>Mean</em> and <em>SD</em>).</li>
+<li>It is possible to create a bar chart using a <em>PivotChart</em>, but since we need to add an errorbar we will use a trick to use a standard graph. The trick is to create a parallell non-pivot table by referencing the pivot table. Click an empty cell such as <code>G4</code> and link the first data cell in the pivot table by writing the formula <code>=A4</code>. Auto-fill that cell to the right for each column and down for each row (except for the <em>Grand Total</em>). Give this new table suitable headers (<em>Year</em>, <em>Mean</em> and <em>SD</em>).</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/206-para-table2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Creating a shadow table from a pivot table.</figcaption>
+<figcaption>Creating a shadow table from a pivot table.</figcaption>
 </figure>
 </div>
 <ol start="5" type="1">
@@ -118,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/211-barchart-error2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Adding errorbars to a barchart.</figcaption>
+<figcaption>Adding errorbars to a barchart.</figcaption>
 </figure>
 </div>
 <p>One good final step is to test if the connection is correct by changing one of the standard deviations to something large. We should then see a change in the graph.</p>
@@ -133,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/214-boxplot-select.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Creating a boxplot from two columns of data.</figcaption>
+<figcaption>Creating a boxplot from two columns of data.</figcaption>
 </figure>
 </div>
 <p>Clicking one of the boxes opens a formatting window to the right. The default in Excel is to show the mean value as a cross.</p>
@@ -148,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/216-histogram-wide-select.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Creating a histogram.</figcaption>
+<figcaption>Creating a histogram.</figcaption>
 </figure>
 </div>
 <ol start="9" type="1">
@@ -157,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/217-histogram-bins.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Changing the bins of a histogram.</figcaption>
+<figcaption>Changing the bins of a histogram.</figcaption>
 </figure>
 </div>
 </section>
@@ -174,11 +176,11 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/219-bird-proportions.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Calculating proportions from count data.</figcaption>
+<figcaption>Calculating proportions from count data.</figcaption>
 </figure>
 </div>
 <ol start="12" type="1">
-<li>If we want to autofill this cell downwards and to the right we have to be a bit careful with which cells should be absolute (i.e.&nbsp;fixed with <code>$</code>) and which should be relative. When we autofill to the right, we want the numerator cell to change, but the we want the columns to be absolute in the denominator <code>SUM()</code>. Also, when we autofill down, we want the rows to always change. The formula should therefore be <code>=BLAD1!B5 / SUM(BLAD1!B$5:BLAD1!AD$5)</code>. Autofill that formula to get proportions for each site.</li>
+<li>If we want to autofill this cell downwards and to the right we have to be a bit careful with which cells should be absolute (i.e.&nbsp;fixed with <code>$</code>) and which should be relative. When we autofill to the right, we want the numerator cell to change, but the we want the columns to be absolute in the denominator <code>SUM()</code>. Also, when we autofill down, we want the rows to always change. The formula should therefore be <code>=BLAD1!B5 / SUM(BLAD1!$B5:BLAD1!$AD5)</code>. Autofilling that formula both to all columns and all rows will give proportions for each site.</li>
 </ol>
 <p>Cells in Excel can be formatted for individual fonts, color background, font color and many other aspect. Here we use this to make the data sheet into a heatmap.</p>
 <ol start="13" type="1">
@@ -187,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/221-bird-format.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Adding conditional formatting to cells.</figcaption>
+<figcaption>Adding conditional formatting to cells.</figcaption>
 </figure>
 </div>
 <p>The heatmap can be really useful to get an idea of patterns in the data, for example which species are more common and if there are differences between the two groups of sites (treatment and control sites).</p>
@@ -196,12 +198,12 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="3.2" class="anchored" data-anchor-id="diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</h2>
 <p>It is common to reduce the data from multiple variables (one per species) to a single variable. This can be done using <em>diversity indices</em>. There are a few different types of indices. Here we look at <em>Simpson’s index</em>, which is one minus the sum of squared proportions.</p>
 <ol start="14" type="1">
-<li>Go to the first empty column <code>AE</code>. We want to calculate one minus the sum of squared proportions for each site. A square is written as <code>^2</code> in Excel, for example <code>=4^2</code> for the square of four. Here we want to square the data then sum it. This can be done with <code>=1-SUM(B5:AD5^2)</code>, then autofilling down for each row.</li>
+<li>Go to the first empty column <code>AE</code>. We want to calculate one minus the sum of squared proportions for each site. A square sum can be calculated with the <code>SUMSQ()</code> function. Here we get <code>=1-SUMSQ(B5:AD5)</code>, then autofilling down for each row.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/223-bird-simpson2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Calculate Simpson’s index for the first row.</figcaption>
+<figcaption>Calculate Simpson’s index for the first row.</figcaption>
 </figure>
 </div>
 <ol start="15" type="1">
@@ -211,21 +213,22 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Images/225-bird-first-letter.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Use the <code>LEFT</code> function to extract the first letter from the column with site id.</figcaption>
+<figcaption>Use the <code>LEFT</code> function to extract the first letter from the column with site id.</figcaption>
 </figure>
 </div>
+<!-- # Geographical data -->
+<!-- This final part may not work on all Excel versions. -->
+<!-- We finish with a quick look at geographical data and the 3D map feature in Excel. On Canvas you should find the Excel file *Two-butterflies.xlsx*. It contains a data extract from iNaturalist. It has been prepared in Excel by changing the decimals in the coordinates to commas, and by removing information about the observers. -->
+<!-- 17. Find and open the file. How is the data structured? What are the observational units and the variables? -->
+<!-- 18. Go to the *Data* ribbon, click the *Data Model* and the *3D Map* button. This should open a window with a map of the planet. Excel may automatically plot the points based on the column names *latitude* and *longitude*. If this does not happen, drag latutide and longitude from the *Field list* to the *Location* field. -->
+<!-- 19. Under the setting for *Category* (in the field to the right), click *Add field* and select *scientific_name*. 20. The type of graph can be changed with the button under *Data* and the size of the marker can be changed under *Layer options* at the bottom. -->
+<!-- An alternative is to do a scatterplot with latitude and longitude as x and y variables. -->
+<!-- Files from iNaturalist may require some tinkering before being useful. On a Swedish system the coordinates must for example be changed from having decimal point to decimal comma. -->
 </section>
 </section>
-<section id="geographical-data" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Geographical data</h1>
-<p>We finish with a quick look at geographical data and the 3D map feature in Excel. On Canvas you should find the Excel file <em>Two-butterflies.xlsx</em>. It contains a data extract from iNaturalist. It has been prepared in Excel by changing the decimals in the coordinates to commas, and by removing information about the observers.</p>
-<ol start="17" type="1">
-<li>Find and open the file. How is the data structured? What are the observational units and the variables?</li>
-<li>Go to the <em>Insert</em> ribbon and click the <em>3D Map</em> button. This should open a window with a map of the planet. Excel may automatically plot the points based on the column names <em>latitude</em> and <em>longitude</em>. If this does not happen, drag latutide and longitude from the <em>Field list</em> to the <em>Location</em> field.</li>
-<li>Under the setting for <em>Category</em> (in the field to the right), click <em>Add field</em> and select <em>scientific_name</em>. 20. The type of graph can be changed with the button under <em>Data</em> and the size of the marker can be changed under <em>Layer options</em> at the bottom.</li>
-</ol>
-<p>An alternative is to do a scatterplot with latitude and longitude as x and y variables.</p>
-<p>Files from iNaturalist may require some tinkering before being useful. On a Swedish system the coordinates must for example be changed from having decimal point to decimal comma.</p>
+<section id="summary" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Summary</h1>
+<p>This concludes the exercise of visualisation of scientific data. In the next exercise we will look at formal statistical tests used to determine if an observed difference is <em>significant</em> or not.</p>
 </section>
 
 </main>
@@ -265,18 +268,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -308,11 +300,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -322,8 +353,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -335,7 +375,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -379,6 +542,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -404,6 +568,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -464,6 +654,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
