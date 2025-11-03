@@ -1,0 +1,231 @@
+---
+format: 
+  revealjs:
+    theme: [style.scss, default]
+    width: "100%"
+    height: "100%"
+    minScale: 1
+    maxScale: 1
+    center: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F, error = F)
+```
+
+```{r, echo = F}
+library(ggplot2)
+library(dplyr)
+library(cowplot)
+library(extrafont)
+library(tidyverse)
+library(magick)
+
+theme_set(
+  theme_bw() + 
+    theme(plot.background = element_rect(fill = "#eaebff", color = "#eaebff"),
+          legend.box.background = element_rect(color = "black"))
+)
+```
+
+##
+
+<div style="position:absolute;width:80%;height:500px;border: 0px double;padding: 150px 10px; left:10%; top:20px;">
+<div style="position:absolute;width:500px">
+<img src="fig/2bees_opaque.png" width="400" height="400" style="border:2px solid; border-radius:100%; padding:0px;display:block;margin-left:auto;margin-right:auto"> 
+<div style="font-size:0.25em;position:absolute;right:0px;">Illustration: Amrei Binzer-Panchal</div>
+</div>
+<div style="position:absolute;text-align:left; font-size: 1.5em;padding:50px;left:500px;width:50%;">
+<br>
+<div style="font-size:0.5em">Basic Biostatistics and Bioinformatics</div>
+
+Session 4: RMarkdown
+
+<div style="font-size:0.5em">Swedish University of Agricultural Sciences, Alnarp</div>
+<div style="font-size:0.3em"><br>15 January 2024</div>
+</div>
+
+</div>
+
+## Basic Biostatistics and Bioinformatics
+
+A seminar series on the fundamentals 
+
+Organised by *SLUBI* and *Statistics at SLU*
+
+Presentation of background and a practical exercise
+
+<br>
+Topics
+
+- ~~27 November. Linux Basics~~
+- ~~11 December. PCA~~
+- **15 January. Introduction to Markdown**
+- 29 January. Population Structure
+
+<br>
+Topic suggestions are welcome
+
+##
+
+**SLUBI**
+
+- SLU bioinformatics center
+- Weekly online drop-in (Wednesdays at 13.00)
+- slubi@slu.se, [https://www.slubi.se](https://www.slubi.se)
+- Alnarp: Lizel Potgieter (Dept. of Plant Breeding)
+
+<br>
+
+**Statistics at SLU**
+
+- SLU statistics center
+- Free consultations for all SLU staff
+- statistics@slu.se
+- Alnarp: Jan-Eric Englund and Adam Flöhr (Dept. of Biosystems and Technology)
+
+## Today's Presentation
+
+RMarkdown
+
+What? Why? How?
+
+## What is (R)Markdown?
+
+In a word processor like MS Word or Apple Pages you create a text file be selecting a font and placing figures and tables
+
+What you see in the program is the same look as when the file is saved as a pdf or printed on paper
+
+<br>
+
+One alternative to this is to create files using a *markup language*
+
+Here, a basic text editor is used to write the text of the file
+
+Headers, figures, and tables are indicated with a specific markup *syntax* (depending on language)
+
+The file is then *rendered* to a suitable format (like docx, pdf or html)
+
+## Markdown
+
+Markdown is a simple markup language developed in the early 2000s by American programmer John Gruber
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, render="asis", echo = F}
+t <- "
+# Example of a main title
+
+Some text.
+
+## Example of a subtitle
+
+Additional text.
+
+- Example of bullet point 1
+- Bullet point 2
+
+## A second subtitle
+
+Even **more** *text*, and a table:
+
+|Title 1   |Title 2   |Title 3   |
+|----------|----------|----------|
+|Item 1a   |Item 2a   |Item 3a   |
+|Item 1b   |Item 2b   |Item 3b   |
+|Item 1c   |Item 2c   |Item 3c   |
+
+"
+
+cat(t)
+```
+
+:::
+
+::: {.column width="50%"}
+```{r, echo = F}
+image_read_pdf("Basic-example.pdf") %>% 
+  image_crop("1400x1100+500+400")
+```
+
+:::
+
+::::
+
+## How is this better? Worse?
+
+**Advantages**
+
+- Quickly produce nice predictable output
+- Produce similar files in multiple formats (word, pdf, html)
+- Same fundamental text can be rendered in multiple styles (for example different journal styles)
+- Easy to incorporate R code
+
+<br>
+
+**Disadvantages**
+
+- Requires one to learn some syntax
+- Difficulties navigating raw text files
+- Technical issues in rendering
+- Flexibility requires learning some language for document layout (LaTeX for pdf, CSS for html)
+
+## RMarkdown
+
+Using RMarkdown (or Quarto), R code and output can be incorporated in a text file
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, render="asis", echo = F}
+t <- "
+# Example of a main title
+
+Some text followed by some R code.
+
+\```{r}
+a <- 2 + 2
+a
+\```\n
+Followed by a graph.
+
+\```{r}
+library(ggplot2)
+ggplot(mtcars, aes(mpg, hp)) + geom_point()
+\```\n
+
+"
+cat(t)
+```
+
+:::
+
+::: {.column width="50%"}
+```{r, echo = F}
+image_read_pdf("R-example.pdf") %>% 
+  image_crop("1400x1300+500+400")
+```
+
+:::
+
+::::
+
+## Output formats
+
+An RMarkdown file can be rendered in a number of different formats
+
+Text files can be rendered as word documents, pdf files or html pages
+
+Slideshows can be rendered as powerpoints or various html formats (such as revealjs)
+
+
+
+

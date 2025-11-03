@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Statistics-summarised.knit</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Statistics-summarised_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="Statistics-summarised_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="style1.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="Statistics-summarised_files/header-attrs-2.29/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="section" class="slide level2">
+<h2></h2>
+<div
+style="position:absolute;width:80%;height:500px;border: 0px double;padding: 50px 10px; left:10%; top:20px;">
+<div style="position:absolute;width:500px;top:200px;">
+<p><img src="fig/2bees_opaque.png" width="400" height="400" style="border:4px solid; border-radius:100%; padding:0px;display:block;margin-left:auto;margin-right:auto"/></p>
+<div style="font-size:0.25em;position:absolute;right:0px;">
+<p>Illustration: Amrei Binzer-Panchal</p>
+</div>
+</div>
+<div
+style="position:absolute;text-align:left; font-size: 1.5em;padding:50px;left:500px;width:50%;">
+<p><br></p>
+<div style="font-size:0.5em">
+<p>Basic Biostatistics and Bioinformatics</p>
+</div>
+<p>Common statistical tests</p>
+<div style="font-size:0.5em">
+<p>Swedish University of Agricultural Sciences, Alnarp</p>
+</div>
+<div style="font-size:0.3em">
+<p><br>10 March 2025</p>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-biostatistics-and-bioinformatics"
+class="slide level2">
+<h2>Basic Biostatistics and Bioinformatics</h2>
+<p>A seminar series on the fundamentals</p>
+<p>Organised by <em>SLUBI</em> and <em>Statistics at SLU</em></p>
+<p>Presentation of background and a practical exercise</p>
+<p><br></p>
+<p>Topic suggestions are welcome</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><strong>SLUBI</strong></p>
+<ul>
+<li>SLU bioinformatics center</li>
+<li>Weekly online drop-in (Wednesdays at 13.00)</li>
+<li><a href="mailto:slubi@slu.se" class="email">slubi@slu.se</a>, <a
+href="https://www.slubi.se" class="uri">https://www.slubi.se</a></li>
+<li>Alnarp: Lizel Potgieter (Dept. of Plant Breeding)</li>
+</ul>
+<p><br></p>
+<p><strong>Statistics at SLU</strong></p>
+<ul>
+<li>SLU statistics center</li>
+<li>Free consultations for all SLU staff</li>
+<li><a href="mailto:statistics@slu.se"
+class="email">statistics@slu.se</a></li>
+<li>Alnarp: Jan-Eric Englund and Adam Flöhr (Dept. of Biosystems and
+Technology)</li>
+</ul>
+</section>
+<section id="today" class="slide level2">
+<h2>Today</h2>
+<p>Some fundamental ideas</p>
+<p>Type of response variable</p>
+<p>Type of explanatory variable(s)</p>
+<p>Method of data collection</p>
+<p>Linear models as a unifying approach</p>
+</section>
+<section>
+<section id="fundamental-ideas" class="title-slide slide level1">
+<h1>Fundamental ideas</h1>
+<p>Simplification for the sake of generalization</p>
+<p><br></p>
+<p>Descriptive</p>
+<ul>
+<li>Summarizing collected data</li>
+</ul>
+<p>Inferential</p>
+<ul>
+<li>Tests to identify underlying patterns</li>
+</ul>
+<p>Predictive</p>
+<ul>
+<li>Projecting to non-observed cases</li>
+</ul>
+</section>
+<section id="population-to-sample" class="slide level2">
+<h2>Population to sample</h2>
+<div style="width:70%;">
+<p>We generalize to some <em>population</em> of individual units</p>
+<p>Seldom possible to observe full population</p>
+<div class="fragment fade-in">
+<p>Draw a subset of individuals (a <em>sample</em>)</p>
+</div>
+<div class="fragment fade-in">
+<p>This sampling has some randomness too it</p>
+</div>
+<div class="fragment fade-in">
+<p>but given some assumptions about the population and the method of
+drawing a sample, we know what the sample <em>should</em> look like</p>
+</div>
+</div>
+<div
+style="width:30%;float:right;left:1200px;top:100px;position:absolute;">
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-2-1.png" width="384" /></p>
+</div>
+</section>
+<section id="sample-to-test" class="slide level2">
+<h2>Sample to test</h2>
+<div style="width:70%;">
+<p>This population-sample setup is the basis of null hypothesis
+significance testing</p>
+<p><br></p>
+<div class="fragment fade-in">
+<p>Assume a certain population property (a <em>null hypothesis</em>)</p>
+</div>
+<div class="fragment fade-in">
+<p>Calculate the probability of getting the observed sample if that
+hypothesis is true (a <em>p-value</em>)</p>
+</div>
+<div class="fragment fade-in">
+<p>If that probability is small, the null hypothesis is assumed false (a
+<em>significant result</em>)</p>
+</div>
+</div>
+<div
+style="width:30%;float:right;left:1200px;top:100px;position:absolute;">
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-3-1.png" width="384" /></p>
+</div>
+</section>
+<section id="choice-of-modeltest" class="slide level2">
+<h2>Choice of model/test</h2>
+<p>NHST is a general setup for inference</p>
+<p>The exact type of test depends on the situation</p>
+<p><br></p>
+<p>Three main components</p>
+<ul>
+<li><p>Type of response variable</p></li>
+<li><p>Type of explanatory variables</p></li>
+<li><p>Method of data collection</p></li>
+</ul>
+</section></section>
+<section>
+<section id="type-of-response-variable"
+class="title-slide slide level1">
+<h1>Type of response variable</h1>
+<p>The response variable is whatever property we are measuring</p>
+<p><br></p>
+<p>Two connected matters</p>
+<ul>
+<li><p>The type of variable</p></li>
+<li><p>The distribution of the outcomes</p></li>
+</ul>
+</section>
+<section id="some-typical-categorisations" class="slide level2">
+<h2>Some typical categorisations</h2>
+<p>Quantitative or qualitative</p>
+<ul>
+<li>Quantitative: numerical</li>
+<li>Qualitative: non-numerical</li>
+</ul>
+<div class="fragment fade-in">
+<p>Discrete or continuous numerical variables</p>
+<ul>
+<li>Discrete: subset of numbers as possible outcomes
+<ul>
+<li>Typically whole numbers (1, 2, 3 etc)</li>
+</ul></li>
+<li>Continuous: any decimal number is a possible outcome</li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<p>Type of outcome</p>
+<ul>
+<li>Binary variables. Two possible outcomes</li>
+<li>Proportions. Outcomes between zero and one
+<ul>
+<li>Discrete case: number of successes of a total</li>
+<li>Continuous case: any number in the 0-to-1-range</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="measurements-of-scale" class="slide level2">
+<h2>Measurements of scale</h2>
+<p>Also known as Stevens’ typology</p>
+<div class="fragment fade-in">
+<ul>
+<li>Nominal
+<ul>
+<li><em>Names.</em> Outcomes in categories</li>
+<li>Two outcomes are either equal or different</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<ul>
+<li>Ordinal
+<ul>
+<li><em>Order.</em> Outcomes in ordered categories</li>
+<li>One outcome is smaller, equal or greater than another</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<ul>
+<li>Interval
+<ul>
+<li>Numerical outcome</li>
+<li>The difference between two outcomes is meaningful</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<ul>
+<li>Ratio
+<ul>
+<li>Numerical outcome</li>
+<li>The ratio of two outcomes is meaningful</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="distributions" class="slide level2">
+<h2>Distributions</h2>
+<p>The observations have some random variation</p>
+<p>This randomness can be expressed with a probability distribution</p>
+<p>The distribution assigns a probability for each possible outcome</p>
+<br>
+<div class="fragment fade-in">
+<p>Distributions depend on <em>parameters</em>, estimated from collected
+data</p>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>The type of distribution depends on the type of variable</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable type</th>
+<th>Scale</th>
+<th>Common distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Continuous numeric</td>
+<td>Interval, ratio</td>
+<td>Normal distribution</td>
+</tr>
+<tr class="even">
+<td>Discrete numeric</td>
+<td>Interval, ratio</td>
+<td>Poisson distribution</td>
+</tr>
+<tr class="odd">
+<td>Binary</td>
+<td>Nominal</td>
+<td>Bernoulli distribution</td>
+</tr>
+<tr class="even">
+<td>Discrete proportion</td>
+<td>Interval, ratio</td>
+<td>Binomial distribution</td>
+</tr>
+<tr class="odd">
+<td>Categorical</td>
+<td>Nominal, ordinal</td>
+<td><em>Ad-hoc</em> distributions</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-5-1.png" width="1344" style="display: block; margin: auto;" /></p>
+</section></section>
+<section id="type-of-explanatory-variable"
+class="title-slide slide level1">
+<h1>Type of explanatory variable</h1>
+<p>The scientific question is typically to see how the response
+<em>depends</em> on another variable</p>
+<p>Often called the <em>explanatory</em> or <em>independent</em>
+variable</p>
+<div class="fragment fade-in">
+<p>Two distinct cases</p>
+<ul>
+<li>Categorical explanatory variable
+<ul>
+<li>The explanatory variable specifies a group</li>
+<li>Want to test for a group difference</li>
+<li>Test choice depends on number of groups</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment fade-in">
+<ul>
+<li>Numerical explanatory variable
+<ul>
+<li>Want to test for a connection between explanatory variables and
+response variables</li>
+</ul></li>
+</ul>
+</div>
+</section>
+
+<section>
+<section id="data-collection" class="title-slide slide level1">
+<h1>Data collection</h1>
+<p>Test choice also depends on the method of data collection</p>
+<p>Most fundamental tests assume observations are independent random
+draws from the population</p>
+<br>
+<div class="fragment fade-in">
+<p>When comparing two treatment groups the data is often in <em>paired
+observations</em></p>
+<p>The observational units are divided into pairs and each treatment
+group is used once</p>
+</div>
+<br>
+<div class="fragment fade-in">
+<p>This generalizes to multiple groups as <em>blocks</em></p>
+<p>The observational units are divided into blocks and each treatment
+group is used once per block</p>
+</div>
+</section>
+<section id="observational-units-and-pseudo-replicates"
+class="slide level2">
+<h2>Observational units and pseudo-replicates</h2>
+<p>Another common collection trait is multiple observation on the same
+observational unit</p>
+<ul>
+<li>Multiple leafs from a plant</li>
+<li>Multiple soil samples from the same treatment plot</li>
+<li>Technical replicates of the same biological sample</li>
+</ul>
+<div class="fragment fade-in">
+<p>This will result in non-independent observations</p>
+<p>Sometimes referred to as pseudo-replicates</p>
+<p>One can aggregate by taking the average (mean)</p>
+</div>
+</section></section>
+<section>
+<section id="choice-of-test" class="title-slide slide level1">
+<h1>Choice of test</h1>
+<p>We get different test for different situations</p>
+<p>The setup is always the same:</p>
+<ul>
+<li>The null hypothesis is that there are no differences / no
+connections between variables</li>
+<li>The p-value captures the probability of the observed data if that
+null is true</li>
+<li>A low p-value gives rejection of the null</li>
+</ul>
+<div class="fragment fade-in">
+<p>In the background a <em>test-value</em> is calculated and the p-value
+is based on that value following a specific
+<em>test-distribution</em></p>
+<p>Tests are typically named after that distribution (t-tests, F-tests,
+<span class="math inline">\(\chi^2\)</span>-tests) or after an early
+user of the test</p>
+</div>
+</section>
+<section id="table-of-basic-tests" class="slide level2">
+<h2>Table of basic tests</h2>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 27%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Response \ Explanatory</th>
+<th style="text-align: left;">Categorical</th>
+<th style="text-align: left;">Numerical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Nominal</td>
+<td style="text-align: left;"><span
+class="math inline">\(\chi^2\)</span></td>
+<td style="text-align: left;">(Nominal regression)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ordinal</td>
+<td style="text-align: left;"><span
+class="math inline">\(\chi^2\)</span></td>
+<td style="text-align: left;">(Ordinal regression)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Binary</td>
+<td style="text-align: left;"><span
+class="math inline">\(\chi^2\)</span>- or z-test</td>
+<td style="text-align: left;">(Binary/logistic regression)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interval/Ratio</td>
+<td style="text-align: left;">t-test or F-test</td>
+<td style="text-align: left;">Correlation or regression</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-parametric</td>
+<td style="text-align: left;">Kruskal-Wallis</td>
+<td style="text-align: left;">Spearman correlation</td>
+</tr>
+</tbody>
+</table>
+<p>Cases in brackets are not common introductory material</p>
+<p><br> It is also possible to see the t-test (or F-test) for ordinal or
+non-normal numerical responses</p>
+<p>This can be justified by the <em>central limit theorem</em></p>
+</section>
+<section id="example-data" class="slide level2">
+<h2>Example data</h2>
+<p>We can create some random data in R</p>
+<p>Three different explanatory variables</p>
+<ul>
+<li>one grouping with 2 levels,</li>
+<li>one grouping with 4 levels,</li>
+<li>and one numerical</li>
+</ul>
+<p>Three different response variables:</p>
+<ul>
+<li>a nominal response,</li>
+<li>a binary response,</li>
+<li>and a numeric response</li>
+</ul>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">250310</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">group_1 =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>), <span class="at">each =</span> <span class="dv">40</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">group_2 =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>), <span class="at">each =</span> <span class="dv">20</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">numeric_explanatory =</span> <span class="fu">runif</span>(<span class="dv">80</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">nominal_response =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dv">80</span>, <span class="at">replace =</span> T),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">binary_response =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dv">80</span>, <span class="at">replace =</span> T),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">numeric_response =</span> <span class="fu">rnorm</span>(<span class="dv">80</span>) <span class="sc">+</span> (group_1 <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">+</span> numeric_explanatory)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dat</span></code></pre></div>
+<pre><code>## # A tibble: 80 × 6
+##    group_1 group_2 numeric_explanatory nominal_response binary_response
+##    &lt;chr&gt;   &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;          
+##  1 A       a                    0.235  b                a              
+##  2 A       a                    0.310  b                b              
+##  3 A       a                    0.244  b                b              
+##  4 A       a                    0.568  b                a              
+##  5 A       a                    0.0716 b                b              
+##  6 A       a                    0.386  b                b              
+##  7 A       a                    0.509  b                b              
+##  8 A       a                    0.458  c                a              
+##  9 A       a                    0.399  c                b              
+## 10 A       a                    0.647  c                b              
+## # ℹ 70 more rows
+## # ℹ 1 more variable: numeric_response &lt;dbl&gt;</code></pre>
+</section>
+<section id="nominal-or-ordinal-response" class="slide level2">
+<h2>Nominal or ordinal response</h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(group_2, <span class="at">fill =</span> nominal_response)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-8-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p><strong>Categorical explanatory</strong></p>
+<p>Connection between variables can be tested with a <span
+class="math inline">\(\chi^2\)</span>-test on a cross-table</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>group_2, dat<span class="sc">$</span>nominal_response)</span></code></pre></div>
+<pre><code>##    
+##     a b c
+##   a 6 9 5
+##   b 9 5 6
+##   c 5 9 6
+##   d 7 9 4</code></pre>
+<div class="fragment fade-in">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(dat<span class="sc">$</span>group_2, dat<span class="sc">$</span>nominal_response))</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table(dat$group_2, dat$nominal_response)
+## X-squared = 3.3201, df = 6, p-value = 0.7677</code></pre>
+</div>
+</div>
+</section>
+<section id="binary-response" class="slide level2">
+<h2>Binary response</h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(group_2, <span class="at">fill =</span> binary_response)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-11-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p><strong>Categorical explanatory with more than two
+categories</strong></p>
+<p>Connection between variables can be tested with a <span
+class="math inline">\(\chi^2\)</span>-test on a cross-table</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>group_2, dat<span class="sc">$</span>binary_response)</span></code></pre></div>
+<pre><code>##    
+##      a  b
+##   a  5 15
+##   b 10 10
+##   c  8 12
+##   d  8 12</code></pre>
+<div class="fragment fade-in">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(dat<span class="sc">$</span>group_1, dat<span class="sc">$</span>nominal_response))</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table(dat$group_1, dat$nominal_response)
+## X-squared = 0.88095, df = 2, p-value = 0.6437</code></pre>
+</div>
+</div>
+</section>
+<section id="binary-response-1" class="slide level2">
+<h2>Binary response</h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(group_1, <span class="at">fill =</span> binary_response)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-14-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p><strong>Categorical explanatory with two categories</strong></p>
+<p>Can be tested with a z-test</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>group_1, dat<span class="sc">$</span>binary_response)</span></code></pre></div>
+<pre><code>##    
+##      a  b
+##   A 15 25
+##   B 16 24</code></pre>
+<div class="fragment fade-in">
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">16</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>))</span></code></pre></div>
+<pre><code>## 
+##  2-sample test for equality of proportions with continuity correction
+## 
+## data:  c(15, 16) out of c(40, 40)
+## X-squared = 0, df = 1, p-value = 1
+## alternative hypothesis: two.sided
+## 95 percent confidence interval:
+##  -0.2634416  0.2134416
+## sample estimates:
+## prop 1 prop 2 
+##  0.375  0.400</code></pre>
+</div>
+</div>
+</section>
+<section id="interval-ratio-response" class="slide level2">
+<h2>Interval / ratio response</h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(group_1, numeric_response)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-17-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p><strong>Categorical explanatory with two categories</strong></p>
+<p>The two-sample t-test</p>
+<p>Exact form depends on if data is paired or not</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(numeric_response <span class="sc">~</span> dat<span class="sc">$</span>group_1, dat)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  numeric_response by dat$group_1
+## t = 3.92, df = 76.365, p-value = 0.0001917
+## alternative hypothesis: true difference in means between group A and group B is not equal to 0
+## 95 percent confidence interval:
+##  0.4909192 1.5048311
+## sample estimates:
+## mean in group A mean in group B 
+##       1.5435224       0.5456472</code></pre>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(group_2, numeric_response)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-19-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p><strong>Categorical explanatory with more than two
+categories</strong></p>
+<p>F-test from an Anova model</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(numeric_response <span class="sc">~</span> group_2, dat)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: numeric_response
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## group_2    3 24.438  8.1461  6.4114 0.000626 ***
+## Residuals 76 96.564  1.2706                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<p>Typically followed up with pairwise <em>post-hoc-tests</em></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(mod, pairwise <span class="sc">~</span> group_2)</span></code></pre></div>
+<pre><code>## $emmeans
+##  group_2 emmean    SE df lower.CL upper.CL
+##  a        1.314 0.252 76    0.812    1.816
+##  b        1.773 0.252 76    1.271    2.275
+##  c        0.300 0.252 76   -0.202    0.802
+##  d        0.791 0.252 76    0.289    1.293
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast estimate    SE df t.ratio p.value
+##  a - b      -0.460 0.356 76  -1.290  0.5722
+##  a - c       1.013 0.356 76   2.843  0.0287
+##  a - d       0.523 0.356 76   1.466  0.4629
+##  b - c       1.473 0.356 76   4.133  0.0005
+##  b - d       0.982 0.356 76   2.756  0.0361
+##  c - d      -0.491 0.356 76  -1.377  0.5175
+## 
+## P value adjustment: tukey method for comparing a family of 4 estimates</code></pre>
+</section>
+<section id="interval-ratio-response-1" class="slide level2">
+<h2>Interval / ratio response</h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(numeric_explanatory, numeric_response)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-22-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p><strong>Numerical explanatory</strong></p>
+<p>Connection between two numerical variables can be tested with
+correlation or regression</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(dat<span class="sc">$</span>numeric_explanatory, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>         dat<span class="sc">$</span>numeric_response)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  dat$numeric_explanatory and dat$numeric_response
+## t = 4.0504, df = 78, p-value = 0.0001198
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.2170323 0.5831725
+## sample estimates:
+##       cor 
+## 0.4168705</code></pre>
+</div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<p>Alternatively as a regression</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(numeric_response <span class="sc">~</span> numeric_explanatory, dat)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: numeric_response
+##                     Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## numeric_explanatory  1 21.028 21.0279  16.406 0.0001198 ***
+## Residuals           78 99.974  1.2817                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-25-1.png" width="480" style="display: block; margin: auto;" /></p>
+</section>
+<section id="non-parametric-methods" class="slide level2">
+<h2>Non-parametric methods</h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(group_2, <span class="fu">rank</span>(numeric_response))) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-26-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p>Non-parametric methods are used when distribution assumptions are not
+met</p>
+<p><strong>Categorical explanatory</strong></p>
+<p>A Kruskal-Wallis test for overall differences</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(numeric_response <span class="sc">~</span> group_2, dat)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  numeric_response by group_2
+## Kruskal-Wallis chi-squared = 14.464, df = 3, p-value = 0.002337</code></pre>
+<div class="fragment fade-in">
+<p>Gives if there are <em>any</em> differences</p>
+<p>Pairwise testing can be done with a <em>Dunn test</em> or repeated
+Kruskal-Wallis tests</p>
+</div>
+</div>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<div style="width:30%;float:right;font-size:0.5em;">
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="fu">rank</span>(numeric_explanatory), </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rank</span>(numeric_response))) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Statistics-summarised_files/figure-revealjs/unnamed-chunk-28-1.png" width="384" /></p>
+</div>
+<div style="width:70%;">
+<p><strong>Numerical explanatory</strong></p>
+<p>The previously used correlation is the <em>Pearson</em>
+correlation</p>
+<p>That test relies on an underlying normality assumption</p>
+<p><em>Spearman correlation</em> is a variant which drops that
+assumption</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(dat<span class="sc">$</span>numeric_explanatory, </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>         dat<span class="sc">$</span>numeric_response, </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  dat$numeric_explanatory and dat$numeric_response
+## S = 50542, p-value = 0.000198
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4076184</code></pre>
+</div>
+</section></section>
+<section>
+<section id="connections-to-linear-models"
+class="title-slide slide level1">
+<h1>Connections to linear models</h1>
+<p>Many basic tests are specific cases of <em>linear models</em></p>
+<p>A model where the response is the sum of additive terms</p>
+<div class="fragment fade-in">
+<p>Each term is an explanatory variable <span
+class="math inline">\(x\)</span> multiplied with some parameter <span
+class="math inline">\(\beta\)</span></p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{1i} + ... +
+\beta_p x_{pi} + \varepsilon\]</span></p>
+</div>
+<div class="fragment fade-in">
+<p>Direct examples are the Anova models and multiple regression
+models</p>
+</div>
+</section>
+<section id="t-tests" class="slide level2">
+<h2>t-tests</h2>
+<p>A t-test comparing two groups (assuming equal variance) is equivalent
+to an Anova model</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(numeric_response <span class="sc">~</span> group_1, dat, <span class="at">var.equal =</span> T)<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.0001889247</code></pre>
+<div class="fragment fade-in">
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(numeric_response <span class="sc">~</span> group_1, dat)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: numeric_response
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## group_1    1  19.915  19.915  15.367 0.0001889 ***
+## Residuals 78 101.087   1.296                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</section>
+<section id="frequency-tests" class="slide level2">
+<h2>Frequency tests</h2>
+<p><span class="math inline">\(\chi^2\)</span>-tests are equivalent to
+tests on a Poisson model, a kind of <em>GLM - generalized linear
+model</em></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">table</span>(dat<span class="sc">$</span>group_2, dat<span class="sc">$</span>nominal_response))<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.7677293</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>dat_freq <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span> <span class="fu">count</span>(group_2, nominal_response)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(n <span class="sc">~</span> group_2 <span class="sc">*</span> nominal_response, dat_freq, <span class="at">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod, <span class="at">test =</span> <span class="st">&quot;Rao&quot;</span>)</span></code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model: poisson, link: log
+## 
+## Response: n
+## 
+## Terms added sequentially (first to last)
+## 
+## 
+##                          Df Deviance Resid. Df Resid. Dev    Rao Pr(&gt;Chi)
+## NULL                                        11     5.7805                
+## group_2                   3   0.0000         8     5.7805 0.0000         
+## nominal_response          2   2.3059         6     3.4746 2.2750   0.3206
+## group_2:nominal_response  6   3.4746         0     0.0000 3.3201   0.7677</code></pre>
+</section>
+<section id="non-parametric-tests" class="slide level2">
+<h2>Non-parametric tests</h2>
+<p>Non-parametric tests are similar, but not equivalent, to standard
+tests on the <em>ranks</em> of the numerical values</p>
+<p>The rank is the order number of the variable</p>
+<div class="fragment fade-in">
+<p>For an explanatory grouping</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(numeric_response <span class="sc">~</span> group_1, dat)<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.0004607553</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rank</span>(numeric_response) <span class="sc">~</span> group_1, dat)<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.0002991131</code></pre>
+</div>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<p>For an explanatory numerical variable</p>
+<p>Spearman correlation is the Pearson correlation between ranks</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(dat<span class="sc">$</span>numeric_explanatory, dat<span class="sc">$</span>numeric_response, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">exact =</span> F)<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.0001748424</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="fu">rank</span>(dat<span class="sc">$</span>numeric_explanatory), <span class="fu">rank</span>(dat<span class="sc">$</span>numeric_response), <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.0001748424</code></pre>
+</section></section>
+<section id="additional-resources" class="title-slide slide level1">
+<h1>Additional resources</h1>
+<p><strong>Flowcharts</strong></p>
+<p><a href="https://guides.library.lincoln.ac.uk/mash/choosing_a_test"
+class="uri">https://guides.library.lincoln.ac.uk/mash/choosing_a_test</a></p>
+<p><a
+href="https://www.med.soton.ac.uk/resmethods/statisticalnotes/which_test_flow.htm"
+class="uri">https://www.med.soton.ac.uk/resmethods/statisticalnotes/which_test_flow.htm</a></p>
+<p><br></p>
+<p><strong>Literature</strong></p>
+<p>Thulin - <em>Modern Statistics with R</em> <a
+href="https://www.modernstatisticswithr.com/"
+class="uri">https://www.modernstatisticswithr.com/</a></p>
+<p>Lindelöv - <em>Common statistical tests are linear models</em> <a
+href="https://lindeloev.github.io/tests-as-linear/"
+class="uri">https://lindeloev.github.io/tests-as-linear/</a></p>
+</section>
+
+<section id="the-end" class="title-slide slide level1">
+<h1>The End</h1>
+<p>Thanks for your attention</p>
+<p><br></p>
+<p>3Bs will return in about two weeks</p>
+</section>
+    </div>
+  </div>
+
+  <script src="Statistics-summarised_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="Statistics-summarised_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: false,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '90%',
+        height: '100%',
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 1,
+        maxScale: 1,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'Statistics-summarised_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS_SVG";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

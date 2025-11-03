@@ -1,0 +1,264 @@
+---
+format: 
+  revealjs:
+    theme: [style.scss, default]
+    width: "100%"
+    height: "100%"
+    minScale: 1
+    maxScale: 1
+    center: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F, error = F)
+```
+
+```{r, echo = F}
+library(ggplot2)
+library(dplyr)
+library(cowplot)
+library(extrafont)
+library(tidyverse)
+library(magick)
+
+theme_set(
+  theme_bw() + 
+    theme(plot.background = element_rect(fill = "#eaebff", color = "#eaebff"),
+          legend.box.background = element_rect(color = "black"))
+)
+```
+
+##
+
+<div style="position:absolute;width:80%;height:500px;border: 0px double;padding: 150px 10px; left:10%; top:20px;">
+<div style="position:absolute;width:500px">
+<img src="fig/2bees_opaque.png" width="400" height="400" style="border:2px solid; border-radius:100%; padding:0px;display:block;margin-left:auto;margin-right:auto"> 
+<div style="font-size:0.25em;position:absolute;right:0px;">Illustration: Amrei Binzer-Panchal</div>
+</div>
+<div style="position:absolute;text-align:left; font-size: 1.5em;padding:50px;left:500px;width:50%;">
+<br>
+<div style="font-size:0.5em">Basic Biostatistics and Bioinformatics</div>
+
+Writing functions in R
+
+<div style="font-size:0.5em">Swedish University of Agricultural Sciences, Alnarp</div>
+<div style="font-size:0.3em"><br>26 February 2024</div>
+</div>
+
+</div>
+
+## Basic Biostatistics and Bioinformatics
+
+A seminar series on the fundamentals 
+
+Organised by *SLUBI* and *Statistics at SLU*
+
+Presentation of background and a practical exercise
+
+<br>
+Topics
+
+- ~~15 January. Introduction to Markdown~~
+- ~~12 February. Population Structure~~
+- 26 February. Writing own functions in R
+
+<br>
+Topic suggestions are welcome
+
+Survey link in previous mail
+
+##
+
+**SLUBI**
+
+- SLU bioinformatics center
+- Weekly online drop-in (Wednesdays at 13.00)
+- slubi@slu.se, [https://www.slubi.se](https://www.slubi.se)
+- Alnarp: Lizel Potgieter (Dept. of Plant Breeding)
+
+<br>
+
+**Statistics at SLU**
+
+- SLU statistics center
+- Free consultations for all SLU staff
+- statistics@slu.se
+- Alnarp: Jan-Eric Englund and Adam Flöhr (Dept. of Biosystems and Technology)
+
+## Today's Presentation
+
+Writing own functions in R
+
+<br>
+
+How is it done?
+
+When is it good to do?
+
+
+## What is a function?
+
+A function is an object with can take an input (or *arguments*) and produce an output
+
+- The `sqrt()` function takes numerical value(s) as *input* and gives the square root as *output*
+
+The input and output can be of any form
+
+- `*()`, used as `5 * 7` takes two values and give their product
+- `sum()` takes many values and give a single numerical output
+- `plot()` takes multiple values and produce a graphic
+- `t.test()` takes numerical values and give the results of a t-test
+
+## How to write a function in R
+
+A function is created with the `function()` function
+
+The function is stored with the assign arrow pointing to the function name
+
+<br>
+
+This creates a function called `add_five()` which add five to a number
+
+```{r}
+add_five <- function(x){
+  return(x + 5)
+}
+
+add_five(10)
+```
+
+The return() call is used to assign the output of the function
+
+## Output of a function
+
+The output can be set with the `return()` function
+
+If there is no return the output of the function is the final printed object
+
+```{r}
+foo <- function(x){
+  print(x + 4)
+  x + 5
+}
+
+foo(1)
+```
+
+The value within `print()` is printed but not an actual output of the function
+
+## Function arguments
+
+We can set multiple arguments to our function
+
+```{r}
+add_three_numbers <- function(a, b, c){
+  a + b + c
+}
+add_three_numbers(1,3,5)
+```
+
+<br>
+
+**Defaults**
+
+It is often convenient to set defaults for some arguments
+
+This will be the value used if no argument is given
+
+<br>
+
+```{r}
+add_three_numbers <- function(a, b = 2, c = 2){
+  a + b + c
+}
+add_three_numbers(1,3,5) # Setting all arguments
+add_three_numbers(1)     # Default for two later arguments
+```
+
+
+## Multiple output
+
+A single output can be specified with `return()` or printed at the end if the function *body*
+
+For multiple outputs several values can be collected in a list
+
+```{r}
+calculate_mean_and_sum <- function(x){
+  m <- mean(x)
+  s <- sum(x)
+  list(m, s)
+}
+calculate_mean_and_sum(c(1,3,4,5,6))
+```
+
+## When is a function useful?
+
+For practical purposes there are a few advantages of functions
+
+- Avoiding repetition
+- Simplifying long sequences
+- Creating structure and increasing readability
+
+## Examples of avoiding repetitions
+
+We have previously seen the `palmerpenguins` data
+
+```{r}
+library(palmerpenguins)
+penguins
+```
+
+<br>
+
+Say we want to do an Anova model comparing species, with a normality test and a heteroskedasticity test
+
+We can wrap this in a function with the name of a column as the input
+
+## Continued
+
+The following functon runs the model with the set variable as response
+
+Collects anova, Shapiro test (normality) and Levene test (heteroskedasticity)
+
+```{r}
+perform_anova_for_variable <- function(variable){
+  y <- penguins %>% pull(variable)
+  mod <- lm(y ~ species, penguins)
+  list(anova(mod), 
+       shapiro.test(residuals(mod)),
+       car::leveneTest(mod))
+}
+```
+
+## Continued
+
+```{r}
+perform_anova_for_variable("bill_length_mm")
+```
+
+## Naming a function
+
+Functions are usually named after verbs
+
+If the name contains multiple words they are typically separated with underscores
+
+## R Studio *Extract function*
+
+RStudio contains a feature where a piece of code can be made into a function
+
+Mark a code section in a script and go to Code > Extract Function
+
+This will create a function
+
+Undefined variables will be set as function arguments
+
+## The End. 
+
+Thank for listening.
+
+Tutorial in five minutes: https://www.dataquest.io/blog/write-functions-in-r/
+
+
