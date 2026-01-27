@@ -89,7 +89,7 @@ The `AVERAGEIF` function is one way to calculate mean values by different groups
 
 # A look at some actual data
 
-Let us now turn to some real-world data to explore two common data operations: filtering (where specific observations are chosen from the full set) and sorting (where the data is ordered according to some criteria). The data covers land use in Swedish regions over time. It can be found on the course Canvas page as *land-use-agriculture-forests*. The source is *Statistics Sweden*.
+Let us now turn to some real-world data to explore two common data operations: filtering (where specific observations are chosen from the full set) and sorting (where the data is ordered according to some criteria). The data covers land use in Swedish regions over time. It can be found on the course Canvas page in the file *data-exercise-1*. The source is *Statistics Sweden*.
 
 13. Find the file on Canvas. Download it to a suitable folder. Open the file in Excel.
 
@@ -177,8 +177,6 @@ Done correctly, we should now have an empty pivot table in a new sheet. To the r
 
 In the next computer exercise we will look at
 
-- cell formatting to make a dataset easier to explore,
-- interactive plots using pivot tables,
 - some of the standard scientific graphs (boxplots, barcharts with errorbars, and the histogram),
 - statistical tests to compare groups,
 - correlation and regression to examine the relation between two numeric variables.

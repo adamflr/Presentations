@@ -25,7 +25,7 @@ In the previous exercise we saw the humble barchart, where a summary measure lik
 
 The first step is to calculate mean values and standard deviations. We will do this for each year in the Gapminder data using a pivot table.
 
-1. In the *Gapminder.xlsx* file, click anywhere in the data (such as `A1`). Then go to the *Insert* ribbon and select *PivotTable*. The dialog window should say that the input data is the full dataset and that the pivot table is printed in a new sheet. Click *OK* to produce an empty table.
+1. In the Gapminder sheer of the file *data-exercise-2*, click anywhere in the data (such as `A1`). Then go to the *Insert* ribbon and select *PivotTable*. The dialog window should say that the input data is the full dataset and that the pivot table is printed in a new sheet. Click *OK* to produce an empty table.
 2. The new window should have the pivot table field to the right. Drag the variable *year* to *Rows* and *liveExp* to *Values*. The default is to calculate the sum, but this can be changed to the mean by clicking the small arrow next to *Sum of lifeExp*, selecting *Value Field Settings*, and then taking *Average* in the list of functions.
 
 ![Changing the type of calculation in a pivot table.](Images/204-average-life2.png)
@@ -58,7 +58,7 @@ Make sure you understand the construction of the boxplot and how it displays the
 
 ## Histogram
 
-A histogram shows the distribution of a variable by dividing the x-axis into intervals (*bins*) and letting bars show the number of observations in each interval. We illustrate this using some *wide* data in the sheet *Wide-lifeExp*.
+A histogram shows the distribution of a variable by dividing the x-axis into intervals (*bins*) and letting bars show the number of observations in each interval. We illustrate this using some *wide* data in the sheet *Gapminder-wide*.
 
 8. Select the column with observations from 1967. Go to the *Insert* ribbon and find the graph icon for *Statistic Chart*. Select *Histogram*.
 
@@ -72,39 +72,19 @@ A histogram shows the distribution of a variable by dividing the x-axis into int
 
 ## Ecological population data
 
-We will now look at some real-world ecological data from a study at the Southern Swedish Forest Research Center. The file *Bird data.xlsx* contains observation numbers for different bird species. Each column is a species and each row is a site. It is natural that we want to compare the distribution of species between sites, but since some sites will have larger number overall, an initial step is to transform the observations from counts to proportion by dividing by the site total.
+We will now look at some real-world ecological data from a study at the Southern Swedish Forest Research Center. The sheet *Bird-population* contains observation numbers for different bird species. Each column is a species and each row is a site. It is useful to summarise such multi-species data to a single variable, and three common ways to do this is richness (the number of observed species at a sight), abundance (the number of observed individuals at a sight) and diversity indices (a measure or number of species and evenness of the abundances).
 
-10. Copy the data sheet by right-clicking the sheet name at the bottom and selecting *Move or Copy*. 
-11. In the new sheet click the first data observation in `B5`. For each cell we want to take the cell value and divide it by the sum total, which here is the sum of the row. We can do this for the first cell `B5` with the formula `=BLAD1!B5 / SUM(BLAD1!B5:BLAD1!AD5)`. Note that the sheet name followed by `!` indicates a different sheet than the current one. 
+10. To calculate abundance we summarise each row. Go to the empty column `AE`, write a column name *Abundance* and the first formula in `AE5`. The row sum will be `=SUM(B5:AD5)`. We can then autofill this down to get the abundance at each site. The sites are divided into two different treatments: does the abundance figures indicate a treatment difference?
 
-![Calculating proportions from count data.](Images/219-bird-proportions.png)
+11. To calculate richness we want to count the number of cells which are non-zero. This will correspond to the number of observed species at a site. One way to do this is with the `COUNTIF()` function. Give the next empty column the name *Richness*. Calculate richness for the first site with the formula `=COUNTIF(B5:AD5, ">0")`. This will give the count of cells in `B5:AD5` where the condition in the second argument is met. Again check the resulting numbers: is there any indication of a treatment difference?
 
-12. If we want to autofill this cell downwards and to the right we have to be a bit careful with which cells should be absolute (i.e. fixed with `$`) and which should be relative. When we autofill to the right, we want the numerator cell to change, but the we want the columns to be absolute in the denominator `SUM()`. Also, when we autofill down, we want the rows to always change. The formula should therefore be `=BLAD1!B5 / SUM(BLAD1!$B5:BLAD1!$AD5)`. Autofilling that formula both to all columns and all rows will give proportions for each site.
+12. Finally, we calculate a *diversity index*. This is an attempt to capture the diversity of species in a single number and there are multiple alternatives. Here we calculate a *Simpson's index* which (for one of multiple formulations) is one minus the sum of squared proportions. We can calculate this by taking the sum of squared species counts, dividing by the squared abundance, and then taking one minus that ratio. Set the name *Squared counts* for the column `AG` and calculate `=SUMSQ(B5:AD5)`, then autofill down. In the next column divide by squared abundance (which we have in the column AE), that is `AG5 / AE5^2`. Finally take one minus that value in another column, that is `=1-AH5`.
 
-Cells in Excel can be formatted for individual fonts, color background, font color and many other aspect. Here we use this to make the data sheet into a heatmap.
-
-13. Mark the data cells in `B5` to `AD36`. Go to the *Home* ribbon and find the icon for *Conditional Formatting*. Go to *Color Scales* and pick any color scheme. The result is that each cell has a color indicating the magnitude of the proportion. If one wants to change the width of columns one can drag the black line between column headers (in the grey area with letters). One can zoom out using the slider at the bottom right.
-
-![Adding conditional formatting to cells.](Images/221-bird-format.png)
-
-The heatmap can be really useful to get an idea of patterns in the data, for example which species are more common and if there are differences between the two groups of sites (treatment and control sites).
-
-## Diversity indices
-
-It is common to reduce the data from multiple variables (one per species) to a single variable. This can be done using *diversity indices*. There are a few different types of indices. Here we look at *Simpson's index*, which is one minus the sum of squared proportions.
-
-14. Go to the first empty column `AE`. We want to calculate one minus the sum of squared proportions for each site. A square sum can be calculated with the `SUMSQ()` function. Here we get `=1-SUMSQ(B5:AD5)`, then autofilling down for each row.
-
-![Calculate Simpson's index for the first row.](Images/223-bird-simpson2.png)
-
-15. Add a *Conditional Formatting* to the index column. Is there any indication of difference between treatment and control sites?
-16. The diversity index can be illustrated with a boxplot. In order to do this we want one column which specifies the type of site and the numerical column of index values. In the first column we have an indicator of site type, but there is a unique identifier, so it cannot be used directly in a graph. Look into using the function `LEFT` to extract the first letter of the first column. Then construct a boxplot showing each of the two site types. The easiest way to construct a boxplot is to have the numerical columns to the right of the categorical column; one quick way to do that is to copy the numerical column and paste it to the right.
-
-![Use the `LEFT` function to extract the first letter from the column with site id.](Images/225-bird-first-letter.png)
+Abundance, richness and diversity indices are all ways to make population data manageable. One goal is this is to do a formal hypothesis test to see if the observed difference is significant or not. This test can be done in Excel, either with a function of in an add-in.
 
 # Adding an add-in in Excel
 
-We move on to look at the calculation of p-values in Excel. One way to do this is by using an add-in called Analysis ToolPak. This needs to be activated before use. The exact way to do this may differ a bit between Excel version.
+One way to perform statistical tests is by using an add-in called Analysis ToolPak. This needs to be activated before use. The exact way to do this may differ a bit between Excel version.
 
 1. Open an empty Excel workbook. Go to *File* in the ribbon at the top. Go to *Options* at the bottom of the list to the left.
 
@@ -120,7 +100,7 @@ One fundamental use of statistics in the science is to test hypotheses using a m
 
 At the end of the last computer exercise we calculated diversity index for each site in the bird experiment. We saw that there was some visual difference between the treatment group and the control group. Let us now do a formal test to see if this difference is significant.
 
-3. Download the Excel file *Computer-exercise-3.xlsx* from the Canvas page. Find the sheet *bird-tree-experiment*, which contains the indices per site. This data is in what we would call long form with each site one row.
+3. The Excel file *data-exercise-2* and sheet *Birds-summaries* which contains the biodiversity indices per site. This data is in what we would call long form with each site one row.
 4. For clarity, state the hypotheses in an empty area next to the data. The null hypothesis is that the two groups have the same population mean diversity, while the alternative is that there is a difference in population means.
 5. The p-value of a test can be calculated in a few different way. The most straight-forward is to use the `T.TEST` function. In an empty area below the null and alternative hypothesis, write `T.TEST(F2:F17;F18:F33;2;2)`. The function has four argument:
 - the first argument `F2:F17` is the data for the first group, 

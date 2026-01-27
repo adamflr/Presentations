@@ -57,7 +57,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ecological-data" id="toc-ecological-data" class="nav-link" data-scroll-target="#ecological-data"><span class="header-section-number">3</span> Ecological data</a>
   <ul class="collapse">
   <li><a href="#ecological-population-data" id="toc-ecological-population-data" class="nav-link" data-scroll-target="#ecological-population-data"><span class="header-section-number">3.1</span> Ecological population data</a></li>
-  <li><a href="#diversity-indices" id="toc-diversity-indices" class="nav-link" data-scroll-target="#diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</a></li>
   </ul></li>
   <li><a href="#adding-an-add-in-in-excel" id="toc-adding-an-add-in-in-excel" class="nav-link" data-scroll-target="#adding-an-add-in-in-excel"><span class="header-section-number">4</span> Adding an add-in in Excel</a></li>
   <li><a href="#comparing-groups" id="toc-comparing-groups" class="nav-link" data-scroll-target="#comparing-groups"><span class="header-section-number">5</span> Comparing groups</a></li>
@@ -103,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 <p>In the previous exercise we saw the humble barchart, where a summary measure like a mean is shown as the height of a bar for each of a few different groups. In scientific publications the barchart is almost always developed using an errorbar which shows the dispersion in the distribution measured with a standard deviation or the precision of the mean estimate measured with a standard error.</p>
 <p>The first step is to calculate mean values and standard deviations. We will do this for each year in the Gapminder data using a pivot table.</p>
 <ol type="1">
-<li>In the <em>Gapminder.xlsx</em> file, click anywhere in the data (such as <code>A1</code>). Then go to the <em>Insert</em> ribbon and select <em>PivotTable</em>. The dialog window should say that the input data is the full dataset and that the pivot table is printed in a new sheet. Click <em>OK</em> to produce an empty table.</li>
+<li>In the Gapminder sheer of the file <em>data-exercise-2</em>, click anywhere in the data (such as <code>A1</code>). Then go to the <em>Insert</em> ribbon and select <em>PivotTable</em>. The dialog window should say that the input data is the full dataset and that the pivot table is printed in a new sheet. Click <em>OK</em> to produce an empty table.</li>
 <li>The new window should have the pivot table field to the right. Drag the variable <em>year</em> to <em>Rows</em> and <em>liveExp</em> to <em>Values</em>. The default is to calculate the sum, but this can be changed to the mean by clicking the small arrow next to <em>Sum of lifeExp</em>, selecting <em>Value Field Settings</em>, and then taking <em>Average</em> in the list of functions.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
@@ -152,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="histogram" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="histogram"><span class="header-section-number">2.3</span> Histogram</h2>
-<p>A histogram shows the distribution of a variable by dividing the x-axis into intervals (<em>bins</em>) and letting bars show the number of observations in each interval. We illustrate this using some <em>wide</em> data in the sheet <em>Wide-lifeExp</em>.</p>
+<p>A histogram shows the distribution of a variable by dividing the x-axis into intervals (<em>bins</em>) and letting bars show the number of observations in each interval. We illustrate this using some <em>wide</em> data in the sheet <em>Gapminder-wide</em>.</p>
 <ol start="8" type="1">
 <li>Select the column with observations from 1967. Go to the <em>Insert</em> ribbon and find the graph icon for <em>Statistic Chart</em>. Select <em>Histogram</em>.</li>
 </ol>
@@ -177,59 +176,18 @@ ul.task-list li input[type="checkbox"] {
 <h1 data-number="3"><span class="header-section-number">3</span> Ecological data</h1>
 <section id="ecological-population-data" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="ecological-population-data"><span class="header-section-number">3.1</span> Ecological population data</h2>
-<p>We will now look at some real-world ecological data from a study at the Southern Swedish Forest Research Center. The file <em>Bird data.xlsx</em> contains observation numbers for different bird species. Each column is a species and each row is a site. It is natural that we want to compare the distribution of species between sites, but since some sites will have larger number overall, an initial step is to transform the observations from counts to proportion by dividing by the site total.</p>
+<p>We will now look at some real-world ecological data from a study at the Southern Swedish Forest Research Center. The sheet <em>Bird-population</em> contains observation numbers for different bird species. Each column is a species and each row is a site. It is useful to summarise such multi-species data to a single variable, and three common ways to do this is richness (the number of observed species at a sight), abundance (the number of observed individuals at a sight) and diversity indices (a measure or number of species and evenness of the abundances).</p>
 <ol start="10" type="1">
-<li>Copy the data sheet by right-clicking the sheet name at the bottom and selecting <em>Move or Copy</em>.</li>
-<li>In the new sheet click the first data observation in <code>B5</code>. For each cell we want to take the cell value and divide it by the sum total, which here is the sum of the row. We can do this for the first cell <code>B5</code> with the formula <code>=BLAD1!B5 / SUM(BLAD1!B5:BLAD1!AD5)</code>. Note that the sheet name followed by <code>!</code> indicates a different sheet than the current one.</li>
+<li><p>To calculate abundance we summarise each row. Go to the empty column <code>AE</code>, write a column name <em>Abundance</em> and the first formula in <code>AE5</code>. The row sum will be <code>=SUM(B5:AD5)</code>. We can then autofill this down to get the abundance at each site. The sites are divided into two different treatments: does the abundance figures indicate a treatment difference?</p></li>
+<li><p>To calculate richness we want to count the number of cells which are non-zero. This will correspond to the number of observed species at a site. One way to do this is with the <code>COUNTIF()</code> function. Give the next empty column the name <em>Richness</em>. Calculate richness for the first site with the formula <code>=COUNTIF(B5:AD5, "&gt;0")</code>. This will give the count of cells in <code>B5:AD5</code> where the condition in the second argument is met. Again check the resulting numbers: is there any indication of a treatment difference?</p></li>
+<li><p>Finally, we calculate a <em>diversity index</em>. This is an attempt to capture the diversity of species in a single number and there are multiple alternatives. Here we calculate a <em>Simpson’s index</em> which (for one of multiple formulations) is one minus the sum of squared proportions. We can calculate this by taking the sum of squared species counts, dividing by the squared abundance, and then taking one minus that ratio. Set the name <em>Squared counts</em> for the column <code>AG</code> and calculate <code>=SUMSQ(B5:AD5)</code>, then autofill down. In the next column divide by squared abundance (which we have in the column AE), that is <code>AG5 / AE5^2</code>. Finally take one minus that value in another column, that is <code>=1-AH5</code>.</p></li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Images/219-bird-proportions.png" class="img-fluid figure-img"></p>
-<figcaption>Calculating proportions from count data.</figcaption>
-</figure>
-</div>
-<ol start="12" type="1">
-<li>If we want to autofill this cell downwards and to the right we have to be a bit careful with which cells should be absolute (i.e.&nbsp;fixed with <code>$</code>) and which should be relative. When we autofill to the right, we want the numerator cell to change, but the we want the columns to be absolute in the denominator <code>SUM()</code>. Also, when we autofill down, we want the rows to always change. The formula should therefore be <code>=BLAD1!B5 / SUM(BLAD1!$B5:BLAD1!$AD5)</code>. Autofilling that formula both to all columns and all rows will give proportions for each site.</li>
-</ol>
-<p>Cells in Excel can be formatted for individual fonts, color background, font color and many other aspect. Here we use this to make the data sheet into a heatmap.</p>
-<ol start="13" type="1">
-<li>Mark the data cells in <code>B5</code> to <code>AD36</code>. Go to the <em>Home</em> ribbon and find the icon for <em>Conditional Formatting</em>. Go to <em>Color Scales</em> and pick any color scheme. The result is that each cell has a color indicating the magnitude of the proportion. If one wants to change the width of columns one can drag the black line between column headers (in the grey area with letters). One can zoom out using the slider at the bottom right.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Images/221-bird-format.png" class="img-fluid figure-img"></p>
-<figcaption>Adding conditional formatting to cells.</figcaption>
-</figure>
-</div>
-<p>The heatmap can be really useful to get an idea of patterns in the data, for example which species are more common and if there are differences between the two groups of sites (treatment and control sites).</p>
-</section>
-<section id="diversity-indices" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="diversity-indices"><span class="header-section-number">3.2</span> Diversity indices</h2>
-<p>It is common to reduce the data from multiple variables (one per species) to a single variable. This can be done using <em>diversity indices</em>. There are a few different types of indices. Here we look at <em>Simpson’s index</em>, which is one minus the sum of squared proportions.</p>
-<ol start="14" type="1">
-<li>Go to the first empty column <code>AE</code>. We want to calculate one minus the sum of squared proportions for each site. A square sum can be calculated with the <code>SUMSQ()</code> function. Here we get <code>=1-SUMSQ(B5:AD5)</code>, then autofilling down for each row.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Images/223-bird-simpson2.png" class="img-fluid figure-img"></p>
-<figcaption>Calculate Simpson’s index for the first row.</figcaption>
-</figure>
-</div>
-<ol start="15" type="1">
-<li>Add a <em>Conditional Formatting</em> to the index column. Is there any indication of difference between treatment and control sites?</li>
-<li>The diversity index can be illustrated with a boxplot. In order to do this we want one column which specifies the type of site and the numerical column of index values. In the first column we have an indicator of site type, but there is a unique identifier, so it cannot be used directly in a graph. Look into using the function <code>LEFT</code> to extract the first letter of the first column. Then construct a boxplot showing each of the two site types. The easiest way to construct a boxplot is to have the numerical columns to the right of the categorical column; one quick way to do that is to copy the numerical column and paste it to the right.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Images/225-bird-first-letter.png" class="img-fluid figure-img"></p>
-<figcaption>Use the <code>LEFT</code> function to extract the first letter from the column with site id.</figcaption>
-</figure>
-</div>
+<p>Abundance, richness and diversity indices are all ways to make population data manageable. One goal is this is to do a formal hypothesis test to see if the observed difference is significant or not. This test can be done in Excel, either with a function of in an add-in.</p>
 </section>
 </section>
 <section id="adding-an-add-in-in-excel" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Adding an add-in in Excel</h1>
-<p>We move on to look at the calculation of p-values in Excel. One way to do this is by using an add-in called Analysis ToolPak. This needs to be activated before use. The exact way to do this may differ a bit between Excel version.</p>
+<p>One way to perform statistical tests is by using an add-in called Analysis ToolPak. This needs to be activated before use. The exact way to do this may differ a bit between Excel version.</p>
 <ol type="1">
 <li>Open an empty Excel workbook. Go to <em>File</em> in the ribbon at the top. Go to <em>Options</em> at the bottom of the list to the left.</li>
 </ol>
@@ -254,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 <p>One fundamental use of statistics in the science is to test hypotheses using a method called <em>null hypothesis significance testing</em>. One example of this is the two-sample t-test. Two hypotheses are set up: a null hypothesis which states that two groups are equal in population mean and an alternative hypothesis which states that they are not equal. Based on underlying statistical theory it is possible to calculate a p-value. The p-value is the probability of getting a more extreme difference between the two groups than the difference we are observing. If the data is completely in line with the null hypothesis the p-value is one and if the data is very far from the null hypothesis the p-value is near zero. A p-value below 0.05 gives that the null hypothesis is <em>rejected</em> and that there is a <em>significant</em> difference between the groups.</p>
 <p>At the end of the last computer exercise we calculated diversity index for each site in the bird experiment. We saw that there was some visual difference between the treatment group and the control group. Let us now do a formal test to see if this difference is significant.</p>
 <ol start="3" type="1">
-<li>Download the Excel file <em>Computer-exercise-3.xlsx</em> from the Canvas page. Find the sheet <em>bird-tree-experiment</em>, which contains the indices per site. This data is in what we would call long form with each site one row.</li>
+<li>The Excel file <em>data-exercise-2</em> and sheet <em>Birds-summaries</em> which contains the biodiversity indices per site. This data is in what we would call long form with each site one row.</li>
 <li>For clarity, state the hypotheses in an empty area next to the data. The null hypothesis is that the two groups have the same population mean diversity, while the alternative is that there is a difference in population means.</li>
 <li>The p-value of a test can be calculated in a few different way. The most straight-forward is to use the <code>T.TEST</code> function. In an empty area below the null and alternative hypothesis, write <code>T.TEST(F2:F17;F18:F33;2;2)</code>. The function has four argument:</li>
 </ol>
